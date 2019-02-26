@@ -1,0 +1,71 @@
+{
+  "name": "puppet-duo_unix",
+  "version": "0.1.0",
+  "author": "Anthony Vitacco <avitacco@iu.edu>",
+  "summary": "",
+  "license": "MIT",
+  "source": "",
+  "dependencies": [
+    {
+      "name": "puppetlabs/stdlib",
+      "version_requirement": ">= 1.0.0 < 6.0.0"
+    },
+    {
+      "name": "puppetlabs/apt",
+      "version_requirement": ">= 6.0.0 < 7.0.0"
+    },
+    {
+      "name": "puppetlabs/translate",
+      "version_requirement": ">= 1.0.0 < 2.0.0"
+    },
+    {
+      "name": "puppetlabs/yumrepo_core",
+      "version_requirement": ">= 1.0.0 < 2.0.0"
+    }
+  ],
+  "operatingsystem_support": [
+    {
+      "operatingsystem": "CentOS",
+      "operatingsystemrelease": [
+        "5",
+        "6",
+        "7"
+      ]
+    },
+    {
+      "operatingsystem": "RedHat",
+      "operatingsystemrelease": [
+        "5",
+        "6",
+        "7"
+      ]
+    },
+    {
+      "operatingsystem": "Debian",
+      "operatingsystemrelease": [
+        "6",
+        "7",
+        "8",
+        "9"
+      ]
+    },
+    {
+      "operatingsystem": "Ubuntu",
+      "operatingsystemrelease": [
+        "12.04",
+        "14.04",
+        "16.04",
+        "18.04"
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "name": "puppet",
+      "version_requirement": ">= 4.10.0 < 7.0.0"
+    }
+  ],
+  "pdk-version": "1.9.0",
+  "template-url": "https://github.com/puppetlabs/pdk-templates/",
+  "template-ref": "1.9.0-0-g7281db5"
+}
