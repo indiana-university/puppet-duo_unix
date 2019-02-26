@@ -1,3 +1,6 @@
+# Copyright © 2019 The Trustees of Indiana University
+# SPDX-License-Identifier: BSD-3-Clause
+#
 # This class just holds some parameter values for use elsewhere
 #
 # @summary Default parameter values for the duo_unix module

@@ -1,3 +1,6 @@
+# Copyright © 2019 The Trustees of Indiana University
+# SPDX-License-Identifier: BSD-3-Clause
+#
 # This class will add a repository to use to install the duo_unix package
 # from Duo Inc.
 #
