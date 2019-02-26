@@ -31,16 +31,31 @@ class duo_unix (
 {
   include duo_unix::repo
 
-  package { $duo_unix::duo_package:
-    ensure  => $ensure,
+  #
+  # I need to figure out a neater way to do this, my assumptions about
+  # being able to use a param for the resource name were wrong
+  #
+  case $facts['os']['family'] {
+    'Debian': {
+      package { $duo_unix::duo_package:
+        ensure  => $ensure,
+        require => Apt::Source['duo_unix'],
+      }
+    }
+    'RedHat': {
+      package { $duo_unix::duo_package:
+        ensure  => $ensure,
+        require => Yumrepo['duo_unix'],
+      }
+    }
   }
-
+  
   if ($duo_unix::usage == 'login') {
     $owner = 'sshd'
   } else {
     $owner = 'root'
   }
-  
+
   file { "/etc/duo/${usage}_duo.conf":
     ensure => $ensure,
     owner  => $owner,

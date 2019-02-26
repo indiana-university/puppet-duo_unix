@@ -15,13 +15,11 @@ class duo_unix::params {
 
   case $facts['os']['family'] {
     'Debian': {
-      $repo_class = 'Apt::Source'
       $duo_package = 'duo-unix'
       $ssh_service = 'sshd'
       $pam_file    = '/etc/pam.d/common-auth'
     }
     'RedHat': {
-      $repo_class = 'Yumrepo'
       $duo_package = 'duo_unix'
       $ssh_service = 'ssh'
       $pam_file = $facts['os']['release']['major'] ? {
