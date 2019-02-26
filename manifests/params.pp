@@ -6,11 +6,6 @@
 # @summary Default parameter values for the duo_unix module
 #
 class duo_unix::params {
-  if ($usage == 'login') {
-    $owner = 'sshd'
-  } else {
-    $owner = 'root'
-  }
 
   $pam_module = $::architecture ? {
     'i386'   => '/lib/security/pam_duo.so',

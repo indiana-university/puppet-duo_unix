@@ -35,9 +35,15 @@ class duo_unix (
     ensure  => $ensure,
   }
 
+  if ($duo_unix::usage == 'login') {
+    $owner = 'sshd'
+  } else {
+    $owner = 'root'
+  }
+  
   file { "/etc/duo/${usage}_duo.conf":
     ensure => $ensure,
-    owner  => $owner, # This variable comes from params.pp
+    owner  => $owner,
     group  => 'root',
     mode   => '0600',
     content => template('duo_unix/duo.conf.erb'),
