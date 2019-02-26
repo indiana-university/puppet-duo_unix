@@ -1,6 +1,10 @@
-# A description of what this class does
+# Copyright © 2019 The Trustees of Indiana University
+# SPDX-License-Identifier: BSD-3-Clause
 #
-# @summary A short summary of the purpose of this class
+# This class is the entry point for the duo_unix class. It will install and
+# configure duo for various Linux distros.
+#
+# @summary This class installs and configures duo for various Linux distros
 #
 # @example
 #   include duo_unix
