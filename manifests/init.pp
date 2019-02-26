@@ -32,6 +32,15 @@ class duo_unix (
   include duo_unix::repo
 
   package { $duo_unix::duo_package:
-    ensure => $ensure
+    ensure  => $ensure,
+  }
+
+  file { "/etc/duo/${usage}_duo.conf":
+    ensure => $ensure,
+    owner  => $owner, # This variable comes from params.pp
+    group  => 'root',
+    mode   => '0600',
+    content => template('duo_unix/duo.conf.erb'),
+    require => Package[$duo_unix::duo_package]
   }
 }
