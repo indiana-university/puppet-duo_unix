@@ -1,28 +1,19 @@
 require 'spec_helper'
 
 describe 'duo_unix' do
-  let(:params) do
-    {
-      'usage' => 'login',
-      'ikey'  => 'test',
-      'skey'  => 'test1234',
-      'host'  => 'test.net'
-    }
-  end
 
   on_supported_os.each do |os, os_facts|
     context "on #{os}" do
+      let(:params) do
+      {
+        'usage' => 'login',
+        'ikey'  => 'testikey',
+        'skey'  => 'testskey',
+        'host'  => 'api-XXXXXXXX.duosecurity.com'
+      }
+      end
       let(:facts) { os_facts }
-      let(:usage) { 'login' }
-      let(:ikey) { 'test' }
-      let(:skey) { 'test1234' }
-      let(:host) { 'test.net' }
-
       it { is_expected.to compile.with_all_deps }
-      it { expect(usage).to eq('login') }
-      it { expect(ikey).to eq('test') }
-      it { expect(skey).to eq('test1234') }
-      it { expect(host).to eq('test.net') }
 
       if os =~ /(?:debian|ubuntu).*/
         it { should contain_package('duo-unix') }
@@ -32,6 +23,29 @@ describe 'duo_unix' do
         it { should contain_package('duo_unix') }
       end
 
+      it { should contain_file('/etc/duo/login_duo.conf')
+        .with_ensure('present')
+        .with_owner('sshd')
+      }
     end
+
+    context 'with usage pam and ensure latest' do
+      let(:params) do
+      {
+        'usage'  => 'pam',
+        'ikey'   => 'testikey',
+        'skey'   => 'testskey',
+        'host'   => 'api-XXXXXXXX.duosecurity.com',
+        'ensure' => 'latest',
+      }
+      end
+      let(:facts) { os_facts }
+
+      it { should contain_file('/etc/duo/pam_duo.conf')
+        .with_ensure('latest')
+        .with_owner('root')
+      }
+    end
+
   end
 end
