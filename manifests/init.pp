@@ -56,7 +56,7 @@ class duo_unix (
     $owner = 'root'
   }
 
-  file { "/etc/duo/${usage}_duo.conf":
+  file { "/etc/duo/${duo_unix::usage}_duo.conf":
     ensure => $ensure,
     owner  => $owner,
     group  => 'root',
