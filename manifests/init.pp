@@ -22,11 +22,18 @@
 #   The API hostname (i.e. api-XXXXXXXX.duosecurity.com
 #
 class duo_unix (
-  Enum['login', 'pam'] $usage,
-  String $ikey,
-  String $skey,
-  StdLib::Host $host,
-  Enum['latest', 'present', 'absent'] $ensure = 'present',
+  Enum['login', 'pam'] $usage                 = undef,
+  String $ikey                                = undef,
+  String $skey                                = undef,
+  StdLib::Host $host                          = undef,
+  Enum['latest', 'present', 'absent'] $ensure = $duo_unix::params::ensure,
+  Enum['no', 'yes'] $fallback_local_ip        = $duo_unix::params::fallback_local_ip,
+  Enum['fail', 'safe'] $failmode              = $duo_unix::params::failmode,
+  Enum['no', 'yes'] $pushinfo                 = $duo_unix::params::pushinfo,
+  Enum['no', 'yes'] $autopush                 = $duo_unix::params::autopush,
+  Enum['no', 'yes'] $motd                     = $duo_unix::params::motd,
+  Integer[1, 3] $prompts                      = $duo_unix::params::prompts,
+  Enum['no', 'yes'] $accept_env_factor        = $duo_unix::params::accept_env_factor,
 ) inherits duo_unix::params
 {
   include duo_unix::repo

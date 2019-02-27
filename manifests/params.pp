@@ -6,7 +6,15 @@
 # @summary Default parameter values for the duo_unix module
 #
 class duo_unix::params {
-
+  $ensure             = 'present'
+  $fallback_local_ip  = 'no'
+  $failmode           = 'safe'
+  $pushinfo           = 'no'
+  $autopush           = 'no'
+  $motd               = 'no'
+  $prompts            = 3
+  $accept_env_factor  = 'no'
+  
   $pam_module = $::architecture ? {
     'i386'   => '/lib/security/pam_duo.so',
     'i686'   => '/lib/security/pam_duo.so',
