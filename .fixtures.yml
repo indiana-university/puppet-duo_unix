@@ -3,7 +3,9 @@
 ---
 fixtures:
   forge_modules:
-    stdlib: "puppetlabs/stdlib"
     apt: "puppetlabs/apt"
+    augeas_core: "puppetlabs/augeas_core"
+    stdlib: "puppetlabs/stdlib"
     translate: "puppetlabs/translate"
     yumrepo_core: "puppetlabs/yumrepo_core"
+ 
