@@ -12,6 +12,14 @@
 # @param usage
 #   Whether it is expected that duo will be enforced through ssh or pam
 #
+# @param manage_pam
+#   Whether to alter the pam config to require Duo
+#   The default is true
+#
+# @param manage_ssh
+#   Whether to alter the ssh config to require Duo
+#   The default is true
+#
 # @param ikey
 #   The Integration Key for Duo
 #
@@ -69,10 +77,12 @@
 #   Default is "no"
 #
 class duo_unix (
-  Enum['login', 'pam'] $usage                 = undef,
-  String $ikey                                = undef,
-  String $skey                                = undef,
-  StdLib::Host $host                          = undef,
+  Enum['login', 'pam'] $usage,
+  String $ikey,
+  String $skey,
+  StdLib::Host $host,
+  Boolean $manage_pam                         = $duo_unix::params::manage_pam,
+  Boolean $manage_ssh                         = $duo_unix::params::manage_ssh,
   Enum['latest', 'present', 'absent'] $ensure = $duo_unix::params::ensure,
   Enum['no', 'yes'] $fallback_local_ip        = $duo_unix::params::fallback_local_ip,
   Enum['fail', 'safe'] $failmode              = $duo_unix::params::failmode,
@@ -81,6 +91,8 @@ class duo_unix (
   Enum['no', 'yes'] $motd                     = $duo_unix::params::motd,
   Integer[1, 3] $prompts                      = $duo_unix::params::prompts,
   Enum['no', 'yes'] $accept_env_factor        = $duo_unix::params::accept_env_factor,
+  Optional[StdLib::Httpurl] $proxy            = undef,
+  Optional[String] $groups                    = undef,
 ) inherits duo_unix::params
 {
   include duo_unix::repo
@@ -102,19 +114,28 @@ class duo_unix (
         require => Yumrepo['duo_unix'],
       }
     }
+    default: {
+      fail("Module ${module_name} does not support ${facts['os']['release']['full']}")
+    }
   }
-  
+
   if ($duo_unix::usage == 'login') {
     $owner = 'sshd'
+    if ($manage_ssh) {
+      include duo_unix::ssh_config
+    }
   } else {
     $owner = 'root'
+    if ($manage_pam) {
+      # include duo_unix::pam_config
+    }
   }
 
   file { "/etc/duo/${duo_unix::usage}_duo.conf":
-    ensure => $ensure,
-    owner  => $owner,
-    group  => 'root',
-    mode   => '0600',
+    ensure  => $ensure,
+    owner   => $owner,
+    group   => 'root',
+    mode    => '0600',
     content => template('duo_unix/duo.conf.erb'),
     require => Package[$duo_unix::duo_package]
   }

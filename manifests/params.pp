@@ -7,6 +7,8 @@
 #
 class duo_unix::params {
   $ensure             = 'present'
+  $manage_pam         = true
+  $manage_ssh         = true
   $fallback_local_ip  = 'no'
   $failmode           = 'safe'
   $pushinfo           = 'no'
@@ -14,7 +16,7 @@ class duo_unix::params {
   $motd               = 'no'
   $prompts            = 3
   $accept_env_factor  = 'no'
-  
+
   $pam_module = $::architecture ? {
     'i386'   => '/lib/security/pam_duo.so',
     'i686'   => '/lib/security/pam_duo.so',
