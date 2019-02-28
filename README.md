@@ -1,9 +1,13 @@
 
 # duo_unix
 
-Welcome to your new module. A short overview of the generated parts can be found in the PDK documentation at https://puppet.com/pdk/latest/pdk_generating_modules.html .
+The duo_unix module handles the deployment of duo_unix (`login_duo` or 
+`pam_duo`) across a range of Linux distributions. The module will handle
+repository dependencies, installation of the duo_unix package, configuration
+of OpenSSH, and PAM alterations as needed.
 
-The README template below provides a starting point with details about what information to include in your README.
+For further information about duo_unix, view the official
+[documentation](https://www.duosecurity.com/docs/duounix).
 
 #### Table of Contents
 
@@ -14,31 +18,48 @@ The README template below provides a starting point with details about what info
     * [Beginning with duo_unix](#beginning-with-duo_unix)
 3. [Usage - Configuration options and additional functionality](#usage)
 4. [Limitations - OS compatibility, etc.](#limitations)
-5. [Development - Guide for contributing to the module](#development)
 
 ## Description
 
-Briefly tell users why they might want to use your module. Explain what your module does and what kind of problems users can solve with it.
+The duo_unix Puppet module installs and manages duo_unix (login_duo or pam_duo).
 
-This should be a fairly short description helps the user decide if your module is what they want.
+This module is meant to be a drop-in replacement for the abandoned official 
+puppet module.
 
 ## Setup
 
-### What duo_unix affects **OPTIONAL**
+### What duo_unix affects
 
-If it's obvious what your module touches, you can skip this section. For example, folks can probably figure out that your mysql_instance module affects their MySQL instances.
+This module will add the official Duo Inc. repository. It will also then
+install the appropriate package(s) for your system.
 
-If there's more that they should know about, though, this is the place to mention:
+It will also optionally alter some files on your system to help ensure that user
+login attempts will correctly require Duo to succeed.
 
-* Files, packages, services, or operations that the module will alter, impact, or execute.
-* Dependencies that your module automatically installs.
-* Warnings or other important notices.
+If `usage` is set to `login`, it will set the following directives in
+`/etc/ssh/sshd_config` 
 
-### Setup Requirements **OPTIONAL**
+```
+ForceCommand       /usr/sbin/login_duo
+PermitTunnel       no
+AllowTcpForwarding no
+```
 
-If your module requires anything extra before setting up (pluginsync enabled, another module, etc.), mention it here.
+If `usage` is set to `pam`, it will alter your pam config. Those changes are
+distribution-specific. To see exactly what is changed, please refer to the
+`manifests/pam_config.pp` file.
 
-If your most recent release breaks compatibility or requires particular steps for upgrading, you might want to include an additional "Upgrading" section here.
+### Setup Requirements
+
+This module requires some additional modules, but it is highly likely that they
+are already installed on your puppet server. They are as follows:
+
+
+* `puppetlabs/apt` `6.0 - 7.0`
+* `puppetlabs/augeas_core` `1.0 - 2.0`
+* `puppetlabs/stdlib` `5.0 - 6.0`
+* `puppetlabs/translate` `1.0 - 2.0`
+* `puppetlabs/yumrepo_core` `1.0 - 2.0`
 
 ### Beginning with duo_unix
 
@@ -46,43 +67,17 @@ The very basic steps needed for a user to get the module up and running. This ca
 
 ## Usage
 
-Include usage examples for common use cases in the **Usage** section. Show your users how to use your module to solve problems, and be sure to include code examples. Include three to five examples of the most important or common tasks a user can accomplish with your module. Show users how to accomplish more complex tasks that involve different types, classes, and functions working in tandem.
-
-## Reference
-
-This section is deprecated. Instead, add reference information to your code as Puppet Strings comments, and then use Strings to generate a REFERENCE.md in your module. For details on how to add code comments and generate documentation with Strings, see the Puppet Strings [documentation](https://puppet.com/docs/puppet/latest/puppet_strings.html) and [style guide](https://puppet.com/docs/puppet/latest/puppet_strings_style.html)
-
-If you aren't ready to use Strings yet, manually create a REFERENCE.md in the root of your module directory and list out each of your module's classes, defined types, facts, functions, Puppet tasks, task plans, and resource types and providers, along with the parameters for each.
-
-For each element (class, defined type, function, and so on), list:
-
-  * The data type, if applicable.
-  * A description of what the element does.
-  * Valid values, if the data type doesn't make it obvious.
-  * Default value, if any.
-
-For example:
-
-```
-### `pet::cat`
-
-#### Parameters
-
-##### `meow`
-
-Enables vocalization in your cat. Valid options: 'string'.
-
-Default: 'medium-loud'.
+```ruby
+class { 'duo_unix':
+  usage => 'login',
+  ikey  => 'your integration key',
+  skey  => 'your secret key',
+  host  => 'api-yourhost.duosecurity.com',
+  motd  => 'yes',
+}
 ```
 
 ## Limitations
 
-In the Limitations section, list any incompatibilities, known issues, or other warnings.
-
-## Development
-
-In the Development section, tell other users the ground rules for contributing to your project and how they should submit their work.
-
-## Release Notes/Contributors/Etc. **Optional**
-
-If you aren't using changelog, put your release notes here (though you should consider using changelog). You can also add any additional sections you feel are necessary or important to include here. Please use the `## ` header.
+In the past the official Duo module supported various RedHat derivatives. This
+module *currently* makes no attempt to support them.
