@@ -1,6 +1,10 @@
 # Changelog
 
-All notable changes to this project will be documented in this file.
+## Release 1.0.4
+
+**Bugfixes**
+
+* Fixed issue where `group` and `http_proxy` were always set in the config even when blank
 
 ## Release 0.1.0
 
