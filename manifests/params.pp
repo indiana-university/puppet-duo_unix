@@ -16,6 +16,7 @@ class duo_unix::params {
   $motd               = 'no'
   $prompts            = 3
   $accept_env_factor  = 'no'
+  $pam_unix_control   = 'requisite'
 
   $pam_module = $::architecture ? {
     'i386'   => '/lib/security/pam_duo.so',
