@@ -127,6 +127,11 @@ class duo_unix (
   } else {
     $owner = 'root'
     if ($manage_pam) {
+
+      if ($manage_pam and $usage == 'login') {
+        include duo_unix::pam_ssh_config
+      }
+
       # include duo_unix::pam_config
     }
   }
