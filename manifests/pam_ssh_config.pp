@@ -1,6 +1,12 @@
-# @summary A short summary of the purpose of this class
+# Copyright © 2019 The Trustees of Indiana University
+# SPDX-License-Identifier: BSD-3-Clause
 #
-# A description of what this class does
+# @summary This class sets sshd up to use PAM
+#
+# This class will set the following parameters in the sshd_config file
+#   * UsePAM                          yes
+#   * UseDNS                          no
+#   * ChallengeResponseAuthentication yes
 #
 # @example
 #   include duo_unix::pam_ssh_config
