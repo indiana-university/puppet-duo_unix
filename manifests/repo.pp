@@ -16,9 +16,9 @@ class duo_unix::repo {
     'Debian': {
       # As of 18.04 there is no i386 release of duo_unix
       if ($facts['os']['release']['full'] >= '18.04') {
-        $architecture = 'x86_64'
+        $architecture = 'amd64'
       } else {
-        $architecture = 'i386,x86_64'
+        $architecture = 'i386,amd64'
       }
 
       apt::source { 'duosecurity':

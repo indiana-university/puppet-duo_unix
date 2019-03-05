@@ -13,7 +13,7 @@ describe 'duo_unix::repo' do
           it {
             is_expected.to contain_apt__source('duosecurity')
               .with_location('https://pkg.duosecurity.com/Ubuntu')
-              .with_architecture('i386,x86_64')
+              .with_architecture('i386,amd64')
           }
         end
 
@@ -23,7 +23,7 @@ describe 'duo_unix::repo' do
               .with_location('https://pkg.duosecurity.com/Ubuntu')
               .with_release('bionic')
               .with_repos('main')
-              .with_architecture('x86_64')
+              .with_architecture('amd64')
           }
         end
 
