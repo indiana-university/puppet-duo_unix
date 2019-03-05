@@ -1,5 +1,9 @@
 # Changelog
 
+## Release 1.0.5
+
+* Fixed my fix for the config template
+
 ## Release 1.0.4
 
 **Bugfixes**

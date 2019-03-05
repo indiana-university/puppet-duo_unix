@@ -40,7 +40,7 @@ motd=<%= @motd %>
 ; Group restriction
 groups=<%= @group %>
 <% end -%>
-<% if defined(@http_proxy) -%>
+<% if defined?(@http_proxy) -%>
 
 ; HTTP proxy
 http_proxy=<%= @http_proxy %>
