@@ -105,13 +105,13 @@ class duo_unix (
     'Debian': {
       package { $duo_unix::duo_package:
         ensure  => $ensure,
-        require => Apt::Source['duo_unix'],
+        require => Apt::Source['duosecurity'],
       }
     }
     'RedHat': {
       package { $duo_unix::duo_package:
         ensure  => $ensure,
-        require => Yumrepo['duo_unix'],
+        require => Yumrepo['duosecurity'],
       }
     }
     default: {
@@ -132,7 +132,7 @@ class duo_unix (
         include duo_unix::pam_ssh_config
       }
 
-      # include duo_unix::pam_config
+      include duo_unix::pam_config
     }
   }
 

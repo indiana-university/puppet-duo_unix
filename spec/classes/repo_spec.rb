@@ -11,7 +11,7 @@ describe 'duo_unix::repo' do
 
         if os != 'ubuntu-18.04-x86_64'
           it {
-            is_expected.to contain_apt__source('duo_unix')
+            is_expected.to contain_apt__source('duosecurity')
               .with_location('https://pkg.duosecurity.com/Ubuntu')
               .with_architecture('i386,x86_64')
           }
@@ -19,7 +19,7 @@ describe 'duo_unix::repo' do
 
         if os == 'ubuntu-18.04-x86_64'
           it {
-            is_expected.to contain_apt__source('duo_unix')
+            is_expected.to contain_apt__source('duosecurity')
               .with_location('https://pkg.duosecurity.com/Ubuntu')
               .with_release('bionic')
               .with_repos('main')
@@ -30,15 +30,15 @@ describe 'duo_unix::repo' do
       end
 
       if os =~ %r{/debian.*/}
-        it { is_expected.to contain_apt__source('duo_unix').with_location('https://pkg.duosecurity.com/Debian') }
+        it { is_expected.to contain_apt__source('duosecurity').with_location('https://pkg.duosecurity.com/Debian') }
       end
 
       if os =~ %r{/redhat.*/}
-        it { is_expected.to contain_yumrepo('duo_unix').with_baseurl('https://pkg.duosecurity.com/RedHat/$releasever/$basearch') }
+        it { is_expected.to contain_yumrepo('duosecurity').with_baseurl('https://pkg.duosecurity.com/RedHat/$releasever/$basearch') }
       end
 
       if os =~ %r{/centos.*/}
-        it { is_expected.to contain_yumrepo('duo_unix').with_baseurl('https://pkg.duosecurity.com/CentOS/$releasever/$basearch') }
+        it { is_expected.to contain_yumrepo('duosecurity').with_baseurl('https://pkg.duosecurity.com/CentOS/$releasever/$basearch') }
       end
     end
   end

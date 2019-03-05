@@ -21,7 +21,7 @@ class duo_unix::repo {
         $architecture = 'i386,x86_64'
       }
 
-      apt::source { 'duo_unix':
+      apt::source { 'duosecurity':
         ensure       => 'present',
         comment      => 'Duo Inc. official repository',
         location     => "${pkg_base_url}/${facts['os']['name']}",
@@ -35,7 +35,7 @@ class duo_unix::repo {
       }
     }
     'RedHat': {
-      yumrepo { 'duo_unix':
+      yumrepo { 'duosecurity':
         ensure   => 'present',
         enabled  => true,
         descr    => 'Duo Inc. officical repository',
