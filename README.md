@@ -18,6 +18,7 @@ For further information about duo_unix, view the official
     * [Beginning with duo_unix](#beginning-with-duo_unix)
 3. [Usage - Configuration options and additional functionality](#usage)
 4. [Limitations - OS compatibility, etc.](#limitations)
+5. [Contributing](#contributing)
 
 ## Description
 
@@ -81,3 +82,11 @@ class { 'duo_unix':
 
 In the past the official Duo module supported various RedHat derivatives. This
 module *currently* makes no attempt to support them.
+
+## Contributing
+
+Pull requests are welcome, but all code must meet the following requirements
+
+* Is fully tested
+* All tests *must* pass
+* Follows the [Puppet language style guide](https://puppet.com/docs/puppet/latest/style_guide.html)
