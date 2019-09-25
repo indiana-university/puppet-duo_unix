@@ -1,5 +1,10 @@
 # Changelog
 
+## Release 1.0.6
+
+* Updated pdk
+* Updated dependency upbound limit in metadata.json
+
 ## Release 1.0.5
 
 * Fixed my fix for the config template
