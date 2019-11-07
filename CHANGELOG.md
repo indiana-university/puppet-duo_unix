@@ -1,4 +1,8 @@
 # Changelog
+## Release 1.0.7
+* Parameterize displaying diff
+* Updated Yum Repo key
+* Fix groups usage
 
 ## Release 1.0.6
 
