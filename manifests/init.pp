@@ -93,6 +93,7 @@ class duo_unix (
   Enum['no', 'yes'] $accept_env_factor        = $duo_unix::params::accept_env_factor,
   Optional[StdLib::Httpurl] $proxy            = undef,
   Optional[String] $groups                    = undef,
+  Boolean $show_diff                          = true,
 ) inherits duo_unix::params
 {
   include duo_unix::repo
@@ -137,11 +138,12 @@ class duo_unix (
   }
 
   file { "/etc/duo/${duo_unix::usage}_duo.conf":
-    ensure  => $ensure,
-    owner   => $owner,
-    group   => 'root',
-    mode    => '0600',
-    content => template('duo_unix/duo.conf.erb'),
-    require => Package[$duo_unix::duo_package]
+    ensure    => $ensure,
+    owner     => $owner,
+    group     => 'root',
+    mode      => '0600',
+    show_diff => $show_diff,
+    content   => template('duo_unix/duo.conf.erb'),
+    require   => Package[$duo_unix::duo_package]
   }
 }
