@@ -29,8 +29,8 @@ class duo_unix::repo {
         repos        => 'main',
         architecture => $architecture,
         key          => {
-          id     => '30BFE0242B19592EB122211D1CC91FC615D32EFC',
-          source => 'https://duo.com/APT-GPG-KEY-DUO',
+          id     => 'DF1A60B56EFE2DC8CA8A9A6101EF98E910448FDB',
+          source => 'https://duo.com/DUO-GPG-PUBLIC-KEY.asc',
         },
       }
     }
@@ -41,7 +41,7 @@ class duo_unix::repo {
         descr    => 'Duo Inc. officical repository',
         baseurl  => "${pkg_base_url}/${facts['os']['name']}/\$releasever/\$basearch",
         gpgcheck => true,
-        gpgkey   => 'https://duo.com/RPM-GPG-KEY-DUO',
+        gpgkey   => 'https://duo.com/DUO-GPG-PUBLIC-KEY.asc',
       }
     }
     default: {
