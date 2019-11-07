@@ -35,13 +35,13 @@ accept_env_factor=<%= @accept_env_factor %>
 ; MOTD display
 motd=<%= @motd %>
 <% end -%>
-<% if defined?(@groups) -%>
+<% if @groups -%>
 
 ; Group restriction
 groups=<%= @groups %>
 <% end -%>
-<% if defined?(@http_proxy) -%>
+<% if @proxy -%>
 
 ; HTTP proxy
-http_proxy=<%= @http_proxy %>
+http_proxy=<%= @proxy %>
 <% end -%>
