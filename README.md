@@ -1,7 +1,7 @@
 
 # duo_unix
 
-[![Build Status](https://travis-ci.org/indiana-university/puppet-duo_unix.svg?branch=master)](https://travis-ci.org/indiana-university/puppet-duo_unix)
+![Travis (.org)](https://img.shields.io/travis/indiana-university/puppet-duo_unix?style=flat-square)
 
 The duo_unix module handles the deployment of duo_unix (`login_duo` or 
 `pam_duo`) across a range of Linux distributions. The module will handle
