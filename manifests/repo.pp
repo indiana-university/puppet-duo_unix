@@ -37,10 +37,10 @@ class duo_unix::repo {
     'RedHat': {
       yumrepo { 'duosecurity':
         ensure   => 'present',
-        enabled  => true,
+        enabled  => '1',
         descr    => 'Duo Inc. officical repository',
         baseurl  => "${pkg_base_url}/${facts['os']['name']}/\$releasever/\$basearch",
-        gpgcheck => true,
+        gpgcheck => '1',
         gpgkey   => 'https://duo.com/RPM-GPG-KEY-DUO',
       }
     }
