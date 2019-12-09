@@ -15,12 +15,14 @@ describe 'duo_unix' do
 
       it { is_expected.to compile.with_all_deps }
 
-      if os =~ %r{/(?:debian|ubuntu).*/}
-        it { is_expected.to contain_package('duo-unix') }
+      if os =~ %r{(?:debian|ubuntu).*}
+        it { is_expected.to contain_package('duo-unix').that_requires('Apt::Source[duosecurity]') }
+        it { is_expected.to contain_apt__source('duosecurity') }
       end
 
-      if os =~ %r{/(?:centos|redhat).*/}
-        it { is_expected.to contain_package('duo_unix') }
+      if os =~ %r{(?:centos|redhat).*}
+        it { is_expected.to contain_package('duo_unix').that_requires('Yumrepo[duosecurity]') }
+        it { is_expected.to contain_yumrepo('duosecurity') }
       end
 
       it {
@@ -47,6 +49,23 @@ describe 'duo_unix' do
           .with_ensure('latest')
           .with_owner('root')
       }
+    end
+
+    context "with unmanaged repos" do
+      let(:params) do
+        {
+          'usage'       => 'login',
+          'ikey'        => 'testikey',
+          'skey'        => 'testskey',
+          'host'        => 'api-XXXXXXXX.duosecurity.com',
+          'manage_repo' => false
+        }
+      end
+      let(:facts) { os_facts }
+
+      it { is_expected.to compile.with_all_deps }
+      it { is_expected.not_to contain_apt__source('duosecurity') }
+      it { is_expected.not_to contain_yumrepo('duosecurity') }
     end
   end
 end

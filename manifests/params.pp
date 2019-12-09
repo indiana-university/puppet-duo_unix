@@ -9,6 +9,7 @@ class duo_unix::params {
   $ensure             = 'present'
   $manage_pam         = true
   $manage_ssh         = true
+  $manage_repo        = true
   $fallback_local_ip  = 'no'
   $failmode           = 'safe'
   $pushinfo           = 'no'
