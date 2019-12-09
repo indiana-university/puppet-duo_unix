@@ -34,7 +34,7 @@ class duo_unix::repo inherits duo_unix::params {
         },
       }
 
-     Apt::Source['duosecurity'] -> Package<| title == $duo_unix::params::duo_package |>
+      Apt::Source['duosecurity'] -> Package<| title == $duo_unix::params::duo_package |>
     }
     'RedHat': {
       yumrepo { 'duosecurity':

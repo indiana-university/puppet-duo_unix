@@ -51,14 +51,14 @@ describe 'duo_unix' do
       }
     end
 
-    context "with unmanaged repos" do
+    context 'with unmanaged repos' do
       let(:params) do
         {
           'usage'       => 'login',
           'ikey'        => 'testikey',
           'skey'        => 'testskey',
           'host'        => 'api-XXXXXXXX.duosecurity.com',
-          'manage_repo' => false
+          'manage_repo' => false,
         }
       end
       let(:facts) { os_facts }
