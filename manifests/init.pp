@@ -90,7 +90,7 @@ class duo_unix (
   Boolean $manage_repo                        = $duo_unix::params::manage_repo,
   Enum['latest', 'present', 'absent'] $ensure = $duo_unix::params::ensure,
   Enum['no', 'yes'] $fallback_local_ip        = $duo_unix::params::fallback_local_ip,
-  Enum['fail', 'safe'] $failmode              = $duo_unix::params::failmode,
+  Enum['secure', 'safe'] $failmode            = $duo_unix::params::failmode,
   Enum['no', 'yes'] $pushinfo                 = $duo_unix::params::pushinfo,
   Enum['no', 'yes'] $autopush                 = $duo_unix::params::autopush,
   Enum['no', 'yes'] $motd                     = $duo_unix::params::motd,
