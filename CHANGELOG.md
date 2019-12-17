@@ -1,4 +1,7 @@
 # Changelog
+## Release 1.0.9
+* scorgatelli-docutech added conditional repo management and fixed some bugs
+
 ## Release 1.0.8
 * Changed ssh service name to 'sshd' on RedHat based systems
 
