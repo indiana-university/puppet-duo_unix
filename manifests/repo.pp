@@ -9,7 +9,7 @@
 # @example
 #   include duo_unix::repo
 #
-class duo_unix::repo {
+class duo_unix::repo inherits duo_unix::params {
   $pkg_base_url = 'https://pkg.duosecurity.com'
 
   case $facts['os']['family'] {
@@ -33,6 +33,8 @@ class duo_unix::repo {
           source => 'https://duo.com/DUO-GPG-PUBLIC-KEY.asc',
         },
       }
+
+      Apt::Source['duosecurity'] -> Package<| title == $duo_unix::params::duo_package |>
     }
     'RedHat': {
       yumrepo { 'duosecurity':
@@ -43,6 +45,8 @@ class duo_unix::repo {
         gpgkey   => 'https://duo.com/DUO-GPG-PUBLIC-KEY.asc',
         gpgcheck => '1',
       }
+
+      Yumrepo['duosecurity'] -> Package<| title == $duo_unix::params::duo_package |>
     }
     default: {
       fail("Module ${module_name} does not support ${facts['os']['release']['full']}")
