@@ -20,6 +20,10 @@
 #   Whether to alter the ssh config to require Duo
 #   The default is true
 #
+# @param manage_repo
+#   Whether to manage the duo repo
+#   The default is true
+#
 # @param ikey
 #   The Integration Key for Duo
 #
@@ -83,9 +87,10 @@ class duo_unix (
   StdLib::Host $host,
   Boolean $manage_pam                         = $duo_unix::params::manage_pam,
   Boolean $manage_ssh                         = $duo_unix::params::manage_ssh,
+  Boolean $manage_repo                        = $duo_unix::params::manage_repo,
   Enum['latest', 'present', 'absent'] $ensure = $duo_unix::params::ensure,
   Enum['no', 'yes'] $fallback_local_ip        = $duo_unix::params::fallback_local_ip,
-  Enum['fail', 'safe'] $failmode              = $duo_unix::params::failmode,
+  Enum['secure', 'safe'] $failmode            = $duo_unix::params::failmode,
   Enum['no', 'yes'] $pushinfo                 = $duo_unix::params::pushinfo,
   Enum['no', 'yes'] $autopush                 = $duo_unix::params::autopush,
   Enum['no', 'yes'] $motd                     = $duo_unix::params::motd,
@@ -96,28 +101,16 @@ class duo_unix (
   Boolean $show_diff                          = true,
 ) inherits duo_unix::params
 {
-  include duo_unix::repo
+  if $manage_repo {
+    include duo_unix::repo
+  }
 
   #
   # I need to figure out a neater way to do this, my assumptions about
   # being able to use a param for the resource name were wrong
   #
-  case $facts['os']['family'] {
-    'Debian': {
-      package { $duo_unix::duo_package:
-        ensure  => $ensure,
-        require => Apt::Source['duosecurity'],
-      }
-    }
-    'RedHat': {
-      package { $duo_unix::duo_package:
-        ensure  => $ensure,
-        require => Yumrepo['duosecurity'],
-      }
-    }
-    default: {
-      fail("Module ${module_name} does not support ${facts['os']['release']['full']}")
-    }
+  package { $duo_unix::duo_package:
+    ensure => $ensure
   }
 
   if ($duo_unix::usage == 'login') {
