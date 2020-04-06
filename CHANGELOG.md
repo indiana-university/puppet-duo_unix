@@ -1,4 +1,11 @@
 # Changelog
+## Release 1.0.10
+* Removed `AllowTcpForwarding no` as this conflicts in environments where the requirement for `AllowTcpForwarding` needs to be `yes`.
+* Updated pdk
+* Updated Changelog
+* Updated Metadata.json
+* Removed vscode extension
+
 ## Release 1.0.9
 * scorgatelli-docutech added conditional repo management and fixed some bugs
 

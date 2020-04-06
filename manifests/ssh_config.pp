@@ -2,7 +2,6 @@
 # Specifically:
 #   * ForceCommand       /usr/sbin/login_duo
 #   * PermitTunnel       no
-#   * AllowTcpForwarding no
 #
 # @summary This command sets ssh up to require duo through ForceCommand
 #
@@ -15,7 +14,6 @@ class duo_unix::ssh_config inherits duo_unix::params
     changes => [
       'set ForceCommand /usr/sbin/login_duo',
       'set PermitTunnel no',
-      'set AllowTcpForwarding no',
     ],
     require => Package[$duo_unix::params::duo_package],
     notify  => Service[$duo_unix::params::ssh_service],
