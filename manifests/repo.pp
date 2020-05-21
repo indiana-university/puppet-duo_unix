@@ -21,15 +21,33 @@ class duo_unix::repo inherits duo_unix::params {
         $architecture = 'i386,amd64'
       }
 
+      #
+      # Because the docker images for ubuntu do not have the lsb-release
+      # package installed by default we cannot rely on facter for info
+      # provided by that binary here. We have to map our own codenames.
+      #
+      $codename_mapping = {
+        '12.04' => 'quantal',
+        '14.04' => 'trusty',
+        '16.04' => 'xenial',
+        '18.04' => 'bionic',
+        '20.04' => 'focal',
+        '6' => 'squeeze',
+        '7' => 'wheezy',
+        '8' => 'jessie',
+        '9' => 'stretch',
+        '10' => 'buster',
+      }
+
       apt::source { 'duosecurity':
         ensure       => 'present',
         comment      => 'Duo Inc. official repository',
         location     => "${pkg_base_url}/${facts['os']['name']}",
-        release      => $::lsbdistcodename,
+        release      => $codename_mapping[$facts['os']['release']['full']],
         repos        => 'main',
         architecture => $architecture,
         key          => {
-          id     => 'DF1A60B56EFE2DC8CA8A9A6101EF98E910448FDB',
+          id     => '08C2A645DDF240B85844068D7A450864C1A07A85',
           source => 'https://duo.com/DUO-GPG-PUBLIC-KEY.asc',
         },
       }

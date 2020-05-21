@@ -2,10 +2,33 @@
 # See https://github.com/puppetlabs/puppetlabs_spec_helper#using-fixtures for details
 ---
 fixtures:
+  repositories:
+    provision: 'git://github.com/puppetlabs/provision.git'
   forge_modules:
-    apt: "puppetlabs/apt"
     augeas_core: "puppetlabs/augeas_core"
-    stdlib: "puppetlabs/stdlib"
-    translate: "puppetlabs/translate"
     yumrepo_core: "puppetlabs/yumrepo_core"
- 
+    facts:
+      repo: "puppetlabs-facts"
+      ref: "1.0.0"
+    inifile:
+      repo: "puppetlabs-inifile"
+      ref: "4.1.0"
+    apt:
+      repo: "puppetlabs-apt"
+      ref: "7.3.0"
+    puppet_agent:
+      repo: "puppetlabs-puppet_agent"
+      ref: "3.0.2"
+    translate:
+      repo: "puppetlabs-translate"
+      ref: "2.1.0"
+    registry:
+      repo: "puppetlabs-registry"
+      ref: "3.1.0"
+    stdlib:
+      repo: "puppetlabs/stdlib"
+      ref: "6.0.0"
+    concat:
+      repo: "puppetlabs/concat"
+      ref: "6.1.0"
+
