@@ -1,29 +1,10 @@
 ---
-default:
-  provisioner: docker
-  images: 
-    - 'ubuntu:18.04'
-    - 'ubuntu:20.04' 
-    - 'centos:7'
-    - 'centos:8'
 docker:
   provisioner: docker
   images:
-    - 'ubuntu:12.04'
     - 'ubuntu:14.04'
     - 'ubuntu:16.04'
     - 'ubuntu:18.04'
-    - 'ubuntu:20.04'
-    - 'centos:5'
-    - 'centos:6'
-    - 'centos:7'
-    - 'centos:8'
-    - 'debian:6'
-    - 'debian:7'
     - 'debian:8'
     - 'debian:9'
     - 'debian:10'
-    - 'redhat:5'
-    - 'redhat:6'
-    - 'redhat:7'
-    - 'redhat:8'
