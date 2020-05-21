@@ -1,4 +1,8 @@
 # Changelog
+## Release 1.0.11
+* Updated PPA pgp key fingerprint
+* Bumped version of PDK
+
 ## Release 1.0.10
 * Removed `AllowTcpForwarding no` as this conflicts in environments where the requirement for `AllowTcpForwarding` needs to be `yes`.
 * Updated pdk
