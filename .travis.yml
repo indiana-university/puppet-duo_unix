@@ -1,6 +1,6 @@
 ---
 os: linux
-dist: xenial
+dist: bionic
 language: ruby
 cache: bundler
 before_install:
@@ -21,7 +21,6 @@ stages:
   - static
   - spec
   - acceptance
-  -
     if: tag =~ ^v\d
     name: deploy
 jobs:
@@ -39,8 +38,30 @@ jobs:
       rvm: 2.5.7
       stage: spec
     -
-      env: DEPLOY_TO_FORGE=yes
-      stage: deploy
+      before_script:
+        - "bundle exec rake 'litmus:provision_list[ubuntu]'"
+        - "bundle exec rake 'litmus:install_agent'"
+        - "bundle exec rake 'litmus:install_module'"
+      script: ["travis_wait 45 bundle exec litmus:acceptance:parallel"]
+      services: docker
+      stage: acceptance
+    -
+      before_script:
+        - "bundle exec rake 'litmus:provision_list[debian]'"
+        - "bundle exec rake 'litmus:install_agent'"
+        - "bundle exec bolt command run 'apt-get install -y lsb-release' --inventoryfile inventory.yaml --targets 'localhost*'"
+        - "bundle exec rake 'litmus:install_module'"
+      script: ["travis_wait 45 bundle exec litmus:acceptance:parallel"]
+      services: docker
+      stage: acceptance
+    -
+      before_script:
+        - "bundle exec rake 'litmus:provision_list[centos]'"
+        - "bundle exec rake 'litmus:install_agent'"
+        - "bundle exec rake 'litmus:install_module'"
+      script: ["travis_wait 45 bundle exec litmus:acceptance:parallel"]
+      services: docker
+      stage: acceptance
 branches:
   only:
     - master

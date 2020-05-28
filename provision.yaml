@@ -1,10 +1,24 @@
 ---
-docker:
+default:
   provisioner: docker
   images:
-    - 'ubuntu:14.04'
-    - 'ubuntu:16.04'
-    - 'ubuntu:18.04'
-    - 'debian:8'
-    - 'debian:9'
-    - 'debian:10'
+    - 'litmusimage/ubuntu:18.04'
+ubuntu:
+  provisioner: docker
+  images:
+    - 'litmusimage/ubuntu:14.04'
+    - 'litmusimage/ubuntu:16.04'
+    - 'litmusimage/ubuntu:18.04'
+    - 'litmusimage/ubuntu:20.04'
+debian:
+  provisioner: docker
+  images:
+    - 'litmusimage/debian:8'
+    - 'litmusimage/debian:9'
+    - 'litmusimage/debian:10'
+centos:
+  provisioner: docker
+  images:
+    - 'centos:6'
+    - 'centos:7'
+    - 'centos:8'

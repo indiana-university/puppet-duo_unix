@@ -52,15 +52,14 @@ motd=yes
 FILECONTENTS
 
 def test_duo(pp, expected_contain, filename)
-    idempotent_apply(pp)
-
-    expect(file(filename)).to be_file
-    expect(file(filename)).to contain expected_contain
+  idempotent_apply(pp)
+  expect(file(filename)).to be_file
+  expect(file(filename)).to contain expected_contain
 end
 
 describe 'Duo configuration' do
-    context 'applying duo configuration'
-    it do
-        test_duo(pp_static_content, expected_contents, duo_config_file)
-    end
+  context 'applying duo configuration'
+  it do
+    test_duo(pp_static_content, expected_contents, duo_config_file)
+  end
 end

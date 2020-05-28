@@ -39,6 +39,18 @@ class duo_unix::repo inherits duo_unix::params {
         '10' => 'buster',
       }
 
+      ensure_resource(
+        'package',
+        'apt-transport-https',
+        {'ensure' => 'present'}
+      )
+
+      ensure_resource(
+        'package',
+        'lsb-release',
+        {'ensure' => 'present'}
+      )
+
       apt::source { 'duosecurity':
         ensure       => 'present',
         comment      => 'Duo Inc. official repository',
@@ -50,6 +62,10 @@ class duo_unix::repo inherits duo_unix::params {
           id     => '08C2A645DDF240B85844068D7A450864C1A07A85',
           source => 'https://duo.com/DUO-GPG-PUBLIC-KEY.asc',
         },
+        require      => [
+          Package['apt-transport-https'],
+          Package['lsb-release'],
+        ],
       }
 
       Apt::Source['duosecurity'] -> Package<| title == $duo_unix::params::duo_package |>
