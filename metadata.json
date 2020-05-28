@@ -1,6 +1,6 @@
 {
   "name": "iu-duo_unix",
-  "version": "1.0.10",
+  "version": "2.0.0",
   "author": "Anthony Vitacco <avitacco@iu.edu>",
   "summary": "Installs, configures, and manages Duo Unix",
   "license": "MIT",
@@ -71,5 +71,5 @@
   ],
   "pdk-version": "1.18.0",
   "template-url": "https://github.com/puppetlabs/pdk-templates/#master",
-  "template-ref": "tags/1.18.0-0-g095317c"
+  "template-ref": "heads/master-0-g88b05c7"
 }
