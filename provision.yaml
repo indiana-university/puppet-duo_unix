@@ -3,6 +3,7 @@ default:
   provisioner: docker
   images:
     - 'litmusimage/ubuntu:18.04'
+    - 'centos:8'
 ubuntu:
   provisioner: docker
   images:
