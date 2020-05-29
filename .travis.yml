@@ -47,7 +47,7 @@ jobs:
         - "bundle exec rake 'litmus:install_agent'"
         - "bundle exec rake 'litmus:install_module'"
       rvm: 2.5.7
-      script: ["travis_wait 45 bundle exec litmus:acceptance:parallel"]
+      script: ["travis_wait 45 bundle exec rake litmus:acceptance:parallel"]
       services: docker
       stage: acceptance
     -
@@ -57,7 +57,7 @@ jobs:
         - "bundle exec bolt command run 'apt-get install -y lsb-release' --inventoryfile inventory.yaml --targets 'localhost*'"
         - "bundle exec rake 'litmus:install_module'"
       rvm: 2.5.7
-      script: ["travis_wait 45 bundle exec litmus:acceptance:parallel"]
+      script: ["travis_wait 45 bundle exec rake litmus:acceptance:parallel"]
       services: docker
       stage: acceptance
     -
@@ -66,7 +66,7 @@ jobs:
         - "bundle exec rake 'litmus:install_agent'"
         - "bundle exec rake 'litmus:install_module'"
       rvm: 2.5.7
-      script: ["travis_wait 45 bundle exec litmus:acceptance:parallel"]
+      script: ["travis_wait 45 bundle exec rake litmus:acceptance:parallel"]
       services: docker
       stage: acceptance
     -
