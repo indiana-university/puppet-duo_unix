@@ -92,3 +92,4 @@ Pull requests are welcome, but all code must meet the following requirements
 * Is fully tested
 * All tests *must* pass
 * Follows the [Puppet language style guide](https://puppet.com/docs/puppet/latest/style_guide.html)
+* All commits *must* be signed
