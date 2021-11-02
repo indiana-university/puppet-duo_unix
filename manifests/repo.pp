@@ -71,11 +71,16 @@ class duo_unix::repo inherits duo_unix::params {
       Apt::Source['duosecurity'] -> Package<| title == $duo_unix::params::duo_package |>
     }
     'RedHat': {
+      $osname = $facts['os']['name'] ? {
+        'CentOS'    => 'CentOS',
+        default     => 'RedHat',
+      }
+
       yumrepo { 'duosecurity':
         ensure   => 'present',
         enabled  => '1',
         descr    => 'Duo Inc. officical repository',
-        baseurl  => "${pkg_base_url}/${facts['os']['name']}/\$releasever/\$basearch",
+        baseurl  => "${pkg_base_url}/${osname}/\$releasever/\$basearch",
         gpgkey   => 'https://duo.com/DUO-GPG-PUBLIC-KEY.asc',
         gpgcheck => '1',
       }
