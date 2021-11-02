@@ -1,4 +1,7 @@
 # Changelog
+## Release 2.1.1
+* Fixed some code quality issues
+
 ## Release 2.1.0
 * Added initial support for Rocky and Alma Linux
   * They will be using the RedHat version of Puppet, not CentOS

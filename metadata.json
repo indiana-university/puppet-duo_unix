@@ -1,6 +1,6 @@
 {
   "name": "iu-duo_unix",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "author": "Anthony Vitacco <avitacco@iu.edu>",
   "summary": "Installs, configures, and manages Duo Unix",
   "license": "MIT",
