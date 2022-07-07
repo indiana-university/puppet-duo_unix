@@ -15,12 +15,12 @@ describe 'duo_unix' do
 
       it { is_expected.to compile.with_all_deps }
 
-      if os =~ %r{(?:debian|ubuntu).*}
+      if os.match? %r{(?:debian|ubuntu).*}
         it { is_expected.to contain_package('duo-unix').that_requires('Apt::Source[duosecurity]') }
         it { is_expected.to contain_apt__source('duosecurity') }
       end
 
-      if os =~ %r{(?:centos|redhat).*}
+      if os.match? %r{(?:centos|redhat).*}
         it { is_expected.to contain_package('duo_unix').that_requires('Yumrepo[duosecurity]') }
         it { is_expected.to contain_yumrepo('duosecurity') }
       end
