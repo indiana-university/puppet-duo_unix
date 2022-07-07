@@ -16,5 +16,5 @@ fixtures:
     stdlib: "puppetlabs/stdlib"
     concat: "puppetlabs/concat"
   symlinks:
-    duo: "#{source_dir}"
+    duo_unix: "#{source_dir}"
 
