@@ -7,8 +7,7 @@
 #
 # @example
 #   include duo_unix::ssh_config
-class duo_unix::ssh_config inherits duo_unix::params
-{
+class duo_unix::ssh_config inherits duo_unix::params {
   augeas { 'duo_ssh':
     context => '/files/etc/ssh/sshd_config',
     changes => [
@@ -21,7 +20,7 @@ class duo_unix::ssh_config inherits duo_unix::params
 
   if !defined(Service[$duo_unix::params::ssh_service]) {
     service { $duo_unix::params::ssh_service:
-      ensure => 'running'
+      ensure => 'running',
     }
   }
 }

@@ -58,10 +58,9 @@ This module requires some additional modules, but it is highly likely that they
 are already installed on your puppet server. They are as follows:
 
 
-* `puppetlabs/apt` `6.0 - 8.0`
+* `puppetlabs/apt` `6.0 - 9.0`
 * `puppetlabs/augeas_core` `1.0.0 - 2.0.0`
-* `puppetlabs/stdlib` `5.0.0 - 6.0.0`
-* `puppetlabs/translate` `1.0.0 - 3.0.0`
+* `puppetlabs/stdlib` `5.0.0 - 9.0.0`
 * `puppetlabs/yumrepo_core` `1.0.0 - 2.0.0`
 
 ### Beginning with duo_unix

@@ -19,7 +19,7 @@ class duo_unix::params {
   $accept_env_factor  = 'no'
   $pam_unix_control   = 'requisite'
 
-  $pam_module = $::architecture ? {
+  $pam_module = $facts['os']['architecture'] ? {
     'i386'   => '/lib/security/pam_duo.so',
     'i686'   => '/lib/security/pam_duo.so',
     default  => '/lib64/security/pam_duo.so',

@@ -1,6 +1,6 @@
 {
   "name": "iu-duo_unix",
-  "version": "2.1.1",
+  "version": "3.0.0",
   "author": "Anthony Vitacco <avitacco@iu.edu>",
   "summary": "Installs, configures, and manages Duo Unix",
   "license": "MIT",
@@ -10,7 +10,7 @@
   "dependencies": [
     {
       "name": "puppetlabs/apt",
-      "version_requirement": ">= 6.0.0 < 8.0.0"
+      "version_requirement": ">= 6.0.0 < 9.0.0"
     },
     {
       "name": "puppetlabs/augeas_core",
@@ -18,11 +18,7 @@
     },
     {
       "name": "puppetlabs/stdlib",
-      "version_requirement": ">= 5.0.0 < 8.0.0"
-    },
-    {
-      "name": "puppetlabs/translate",
-      "version_requirement": ">= 1.0.0 < 3.0.0"
+      "version_requirement": ">= 5.0.0 < 9.0.0"
     },
     {
       "name": "puppetlabs/yumrepo_core",
@@ -33,33 +29,31 @@
     {
       "operatingsystem": "CentOS",
       "operatingsystemrelease": [
-        "6",
         "7",
-        "8"
+        "8",
+        "9"
       ]
     },
     {
       "operatingsystem": "RedHat",
       "operatingsystemrelease": [
-        "6",
         "7",
-        "8"
+        "8",
+        "9"
       ]
     },
     {
       "operatingsystem": "Debian",
       "operatingsystemrelease": [
-        "8",
-        "9",
-        "10"
+        "10",
+        "11"
       ]
     },
     {
       "operatingsystem": "Ubuntu",
       "operatingsystemrelease": [
-        "14.04",
-        "16.04",
-        "18.04"
+        "18.04",
+        "20.04"
       ]
     },
     {
@@ -78,10 +72,10 @@
   "requirements": [
     {
       "name": "puppet",
-      "version_requirement": ">= 4.10.0 < 7.0.0"
+      "version_requirement": ">= 6.0.0 < 8.0.0"
     }
   ],
-  "pdk-version": "1.18.0",
-  "template-url": "https://github.com/puppetlabs/pdk-templates/#master",
-  "template-ref": "heads/master-0-g88b05c7"
+  "pdk-version": "2.5.0",
+  "template-url": "https://github.com/puppetlabs/pdk-templates.git#main",
+  "template-ref": "tags/2.5.0-0-g369d483"
 }

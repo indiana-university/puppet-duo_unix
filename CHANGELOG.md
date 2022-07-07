@@ -1,4 +1,22 @@
 # Changelog
+## Release 3.0.0
+* Fixed unit tests
+* Fixed puppet-lint issues
+* Updated legacy facts
+* Updated PDK
+* Updated DUO GPG keys
+* Updated README
+* Dropped Ubuntu 14.04 support
+* Dropped Ubuntu 16.04 support
+* Dropped CentOS 6 support
+* Dropped Debian 8 support
+* Dropped Debian 9 support
+* Added Ubuntu 20.04 support
+* Added CentOS 9 support
+* Added RedHat 9 support
+* Added Debian 11 support
+* Removed deprecated `puppetlabs/translate` module
+
 ## Release 2.1.1
 * Fixed some code quality issues
 

@@ -27,28 +27,25 @@ class duo_unix::repo inherits duo_unix::params {
       # provided by that binary here. We have to map our own codenames.
       #
       $codename_mapping = {
-        '12.04' => 'quantal',
-        '14.04' => 'trusty',
-        '16.04' => 'xenial',
         '18.04' => 'bionic',
         '20.04' => 'focal',
-        '6' => 'squeeze',
         '7' => 'wheezy',
         '8' => 'jessie',
         '9' => 'stretch',
         '10' => 'buster',
+        '11' => 'bullseye',
       }
 
       ensure_resource(
         'package',
         'apt-transport-https',
-        {'ensure' => 'present'}
+        { 'ensure' => 'present' }
       )
 
       ensure_resource(
         'package',
         'lsb-release',
-        {'ensure' => 'present'}
+        { 'ensure' => 'present' }
       )
 
       apt::source { 'duosecurity':
@@ -59,7 +56,7 @@ class duo_unix::repo inherits duo_unix::params {
         repos        => 'main',
         architecture => $architecture,
         key          => {
-          id     => '08C2A645DDF240B85844068D7A450864C1A07A85',
+          id     => 'D8EC4E2058401AE5578C4B3F4B44CE3DFF696172',
           source => 'https://duo.com/DUO-GPG-PUBLIC-KEY.asc',
         },
         require      => [

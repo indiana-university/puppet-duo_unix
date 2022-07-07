@@ -8,8 +8,7 @@
 #
 # @example
 #   include duo_unix::pam_config
-class duo_unix::pam_config inherits duo_unix::params
-{
+class duo_unix::pam_config inherits duo_unix::params {
   $aug_pam_path = "/files${duo_unix::params::pam_file}"
   $aug_match    = "${aug_pam_path}/*/module[. = '${duo_unix::params::pam_module}']"
 
@@ -22,7 +21,7 @@ class duo_unix::pam_config inherits duo_unix::params
           "ins 100 after ${aug_pam_path}/1",
           "set ${aug_pam_path}/100/type auth",
           "set ${aug_pam_path}/100/control '[success=1 default=ignore]'",
-          "set ${aug_pam_path}/100/module ${duo_unix::params::pam_module}"
+          "set ${aug_pam_path}/100/module ${duo_unix::params::pam_module}",
         ],
         require => Package[$duo_unix::params::duo_package],
         onlyif  => "match ${aug_match} size == 0";
@@ -35,7 +34,7 @@ class duo_unix::pam_config inherits duo_unix::params
           "ins 100 after ${aug_pam_path}/2",
           "set ${aug_pam_path}/100/type auth",
           "set ${aug_pam_path}/100/control sufficient",
-          "set ${aug_pam_path}/100/module ${duo_unix::params::pam_module}"
+          "set ${aug_pam_path}/100/module ${duo_unix::params::pam_module}",
         ],
         require => Package[$duo_unix::params::duo_package],
         onlyif  => "match ${aug_match} size == 0";
