@@ -5,10 +5,9 @@ fixtures:
   repositories:
     facts: 'https://github.com/puppetlabs/puppetlabs-facts.git'
     puppet_agent: 'https://github.com/puppetlabs/puppetlabs-puppet_agent.git'
-    provision: 'git://github.com/puppetlabs/provision.git'
+    provision: 'https://github.com/puppetlabs/provision.git'
   forge_modules:
     augeas_core: "puppetlabs/augeas_core"
-    yumrepo_core: "puppetlabs/yumrepo_core"
     yumrepo_core: "puppetlabs/yumrepo_core"
     inifile: "puppetlabs/inifile"
     apt: "puppetlabs/apt"

@@ -27,6 +27,16 @@ describe 'duo_unix::repo' do
           }
         end
 
+        if os == 'ubuntu-20.04-x86_64'
+          it {
+            is_expected.to contain_apt__source('duosecurity')
+              .with_location('https://pkg.duosecurity.com/Ubuntu')
+              .with_release('focal')
+              .with_repos('main')
+              .with_architecture('amd64')
+          }
+        end
+
       end
 
       if os.match? %r{debian.*}
