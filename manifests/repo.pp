@@ -59,7 +59,7 @@ class duo_unix::repo inherits duo_unix::params {
         repos        => 'main',
         architecture => $architecture,
         key          => {
-          id     => '08C2A645DDF240B85844068D7A450864C1A07A85',
+          id     => 'D8EC4E2058401AE5578C4B3F4B44CE3DFF696172',
           source => 'https://duo.com/DUO-GPG-PUBLIC-KEY.asc',
         },
         require      => [
