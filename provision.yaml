@@ -5,7 +5,6 @@ default:
     - 'ubuntu:20.04'
     - 'ubuntu:18.04'
     - 'litmusimage/centos:7'
-    - 'litmusimage/centos:stream8'
 ubuntu:
   provisioner: docker
   images:
@@ -20,4 +19,3 @@ centos:
   provisioner: docker
   images:
     - 'litmusimage/centos:7'
-    - 'litmusimage/centos:stream8'

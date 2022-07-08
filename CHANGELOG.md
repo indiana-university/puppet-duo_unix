@@ -13,7 +13,6 @@
 * Dropped Debian 9 support
 * Added Ubuntu 20.04 support
 * Added CentOS 9 support
-* Added CentOSStream support
 * Added RedHat 9 support
 * Added Debian 11 support
 * Removed deprecated `puppetlabs/translate` module
