@@ -9,14 +9,6 @@ describe 'duo_unix::repo' do
 
       if os.match? %r{ubuntu.*}
 
-        if os != 'ubuntu-18.04-x86_64'
-          it {
-            is_expected.to contain_apt__source('duosecurity')
-              .with_location('https://pkg.duosecurity.com/Ubuntu')
-              .with_architecture('i386,amd64')
-          }
-        end
-
         if os == 'ubuntu-18.04-x86_64'
           it {
             is_expected.to contain_apt__source('duosecurity')
