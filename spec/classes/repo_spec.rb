@@ -39,6 +39,10 @@ describe 'duo_unix::repo' do
         it { is_expected.to contain_yumrepo('duosecurity').with_baseurl('https://pkg.duosecurity.com/CentOS/$releasever/$basearch') }
       end
 
+      if os.match? %r{centosstream.*}
+        it { is_expected.to contain_yumrepo('duosecurity').with_baseurl('https://pkg.duosecurity.com/CentOSStream/$releasever/$basearch') }
+      end
+
       if os.match? %r{(redhat.*|rocky.*|alma.*)}
         it { is_expected.to contain_yumrepo('duosecurity').with_baseurl('https://pkg.duosecurity.com/RedHat/$releasever/$basearch') }
       end

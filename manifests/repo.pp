@@ -69,8 +69,9 @@ class duo_unix::repo inherits duo_unix::params {
     }
     'RedHat': {
       $osname = $facts['os']['name'] ? {
-        'CentOS'    => 'CentOS',
-        default     => 'RedHat',
+        'CentOS'       => 'CentOS',
+        'CentOSStream' => 'CentOSStream',
+        default        => 'RedHat',
       }
 
       yumrepo { 'duosecurity':
