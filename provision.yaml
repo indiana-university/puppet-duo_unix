@@ -4,7 +4,7 @@ default:
   images:
     - 'ubuntu:20.04'
     - 'ubuntu:18.04'
-    - 'litmusimage/centos:8'
+    - 'litmusimage/centos:7'
 ubuntu:
   provisioner: docker
   images:
@@ -13,10 +13,9 @@ ubuntu:
 debian:
   provisioner: docker
   images:
-    - 'debian:9'
     - 'debian:10'
+    - 'debian:11'
 centos:
   provisioner: docker
   images:
     - 'litmusimage/centos:7'
-    - 'litmusimage/centos:8'

@@ -10,8 +10,7 @@
 #
 # @example
 #   include duo_unix::pam_ssh_config
-class duo_unix::pam_ssh_config inherits duo_unix::params
-{
+class duo_unix::pam_ssh_config inherits duo_unix::params {
   augeas { 'Duo Security SSH Configuration':
     context => '/files/etc/ssh/sshd_config',
     changes => [

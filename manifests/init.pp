@@ -79,6 +79,15 @@
 #   variable before prompting the user for input. When $DUO_PASSCODE is 
 #   non-empty, it will override autopush.
 #   Default is "no"
+# @param proxy
+#   Whether to use a proxy.
+#
+# @param groups
+#   The groups to assign.
+#
+# @param show_diff
+#   Whether to display differences when the file changes.
+# 
 #
 class duo_unix (
   Enum['login', 'pam'] $usage,
@@ -99,8 +108,7 @@ class duo_unix (
   Optional[StdLib::Httpurl] $proxy            = undef,
   Optional[String] $groups                    = undef,
   Boolean $show_diff                          = true,
-) inherits duo_unix::params
-{
+) inherits duo_unix::params {
   if $manage_repo {
     include duo_unix::repo
   }
@@ -110,7 +118,7 @@ class duo_unix (
   # being able to use a param for the resource name were wrong
   #
   package { $duo_unix::duo_package:
-    ensure => $ensure
+    ensure => $ensure,
   }
 
   if ($duo_unix::usage == 'login') {
@@ -121,7 +129,6 @@ class duo_unix (
   } else {
     $owner = 'root'
     if ($manage_pam) {
-
       if ($manage_pam and $usage == 'login') {
         include duo_unix::pam_ssh_config
       }
@@ -137,6 +144,6 @@ class duo_unix (
     mode      => '0600',
     show_diff => $show_diff,
     content   => template('duo_unix/duo.conf.erb'),
-    require   => Package[$duo_unix::duo_package]
+    require   => Package[$duo_unix::duo_package],
   }
 }
