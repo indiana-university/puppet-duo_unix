@@ -69,7 +69,7 @@ class duo_unix::repo inherits duo_unix::params {
     }
     'RedHat': {
       $osname = $facts['os']['name'] ? {
-        'CentOS'       => 'CentOS',
+        'CentOS'       => $facts['os']['distro']['id'],
         default        => 'RedHat',
       }
 
