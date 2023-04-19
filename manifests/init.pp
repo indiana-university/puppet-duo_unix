@@ -33,9 +33,13 @@
 # @param host
 #   The API hostname (i.e. api-XXXXXXXX.duosecurity.com
 #
-# @param ensure
+# @param package_ensure
 #   This controls the package and config states
 #   The default is "present"
+#
+# @param config_ensure
+#   This controls the presence or absense of the configuration file
+#   The default is "file"
 #
 # @param fallback_local_ip
 #   If Duo Unix cannot detect the IP address of the client, setting 
@@ -90,24 +94,25 @@
 # 
 #
 class duo_unix (
-  Enum['login', 'pam'] $usage,
-  String $ikey,
-  String $skey,
-  StdLib::Host $host,
-  Boolean $manage_pam                         = $duo_unix::params::manage_pam,
-  Boolean $manage_ssh                         = $duo_unix::params::manage_ssh,
-  Boolean $manage_repo                        = $duo_unix::params::manage_repo,
-  Enum['latest', 'present', 'absent'] $ensure = $duo_unix::params::ensure,
-  Enum['no', 'yes'] $fallback_local_ip        = $duo_unix::params::fallback_local_ip,
-  Enum['secure', 'safe'] $failmode            = $duo_unix::params::failmode,
-  Enum['no', 'yes'] $pushinfo                 = $duo_unix::params::pushinfo,
-  Enum['no', 'yes'] $autopush                 = $duo_unix::params::autopush,
-  Enum['no', 'yes'] $motd                     = $duo_unix::params::motd,
-  Integer[1, 3] $prompts                      = $duo_unix::params::prompts,
-  Enum['no', 'yes'] $accept_env_factor        = $duo_unix::params::accept_env_factor,
-  Optional[StdLib::Httpurl] $proxy            = undef,
-  Optional[String] $groups                    = undef,
-  Boolean $show_diff                          = true,
+  Enum['login', 'pam']                $usage,
+  String                              $ikey,
+  String                              $skey,
+  StdLib::Host                        $host,
+  Boolean                             $manage_pam        = $duo_unix::params::manage_pam,
+  Boolean                             $manage_ssh        = $duo_unix::params::manage_ssh,
+  Boolean                             $manage_repo       = $duo_unix::params::manage_repo,
+  Enum['latest', 'present', 'absent'] $package_ensure    = $duo_unix::params::package_ensure,
+  Enum['file', 'absent']              $config_ensure     = $duo_unix::params::config_ensure,
+  Enum['no', 'yes']                   $fallback_local_ip = $duo_unix::params::fallback_local_ip,
+  Enum['secure', 'safe']              $failmode          = $duo_unix::params::failmode,
+  Enum['no', 'yes']                   $pushinfo          = $duo_unix::params::pushinfo,
+  Enum['no', 'yes']                   $autopush          = $duo_unix::params::autopush,
+  Enum['no', 'yes']                   $motd              = $duo_unix::params::motd,
+  Integer[1, 3]                       $prompts           = $duo_unix::params::prompts,
+  Enum['no', 'yes']                   $accept_env_factor = $duo_unix::params::accept_env_factor,
+  Optional[StdLib::Httpurl]           $proxy             = undef,
+  Optional[String]                    $groups            = undef,
+  Boolean                             $show_diff         = true,
 ) inherits duo_unix::params {
   if $manage_repo {
     include duo_unix::repo
@@ -118,7 +123,7 @@ class duo_unix (
   # being able to use a param for the resource name were wrong
   #
   package { $duo_unix::duo_package:
-    ensure => $ensure,
+    ensure => $package_ensure,
   }
 
   if ($duo_unix::usage == 'login') {
@@ -138,7 +143,7 @@ class duo_unix (
   }
 
   file { "/etc/duo/${duo_unix::usage}_duo.conf":
-    ensure    => $ensure,
+    ensure    => $config_ensure,
     owner     => $owner,
     group     => 'root',
     mode      => '0600',
