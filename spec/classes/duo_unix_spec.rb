@@ -29,6 +29,25 @@ describe 'duo_unix' do
         is_expected.to contain_file('/etc/duo/login_duo.conf')
           .with_ensure('file')
           .with_owner('sshd')
+          .without_content(%r{^cafile.+})
+      }
+    end
+
+    context 'with cafile defined' do
+      let(:params) do
+        {
+          'usage'  => 'login',
+          'ikey'   => 'testikey',
+          'skey'   => 'testskey',
+          'host'   => 'api-XXXXXXXX.duosecurity.com',
+          'cafile' => '/dne',
+        }
+      end
+      let(:facts) { os_facts }
+
+      it {
+        is_expected.to contain_file('/etc/duo/login_duo.conf')
+          .with_content(%r{^cafile=/dne})
       }
     end
 
