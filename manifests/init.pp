@@ -86,6 +86,9 @@
 # @param proxy
 #   Whether to use a proxy.
 #
+# @param cafile
+#   Path to CA file.
+#
 # @param groups
 #   The groups to assign.
 #
@@ -111,6 +114,7 @@ class duo_unix (
   Integer[1, 3]                       $prompts           = $duo_unix::params::prompts,
   Enum['no', 'yes']                   $accept_env_factor = $duo_unix::params::accept_env_factor,
   Optional[StdLib::Httpurl]           $proxy             = undef,
+  Optional[Stdlib::Absolutepath]      $cafile            = undef,
   Optional[String]                    $groups            = undef,
   Boolean                             $show_diff         = true,
 ) inherits duo_unix::params {

@@ -45,3 +45,8 @@ groups=<%= @groups %>
 ; HTTP proxy
 http_proxy=<%= @proxy %>
 <% end -%>
+<% if @cafile -%>
+
+; CA file
+cafile=<%= @cafile %>
+<% end -%>
