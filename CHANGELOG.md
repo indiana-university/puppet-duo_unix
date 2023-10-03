@@ -1,4 +1,12 @@
 # Changelog
+## Release 4.0.1
+* PDK update
+* Merge pull request for optional cafile parameter (treydock)
+
+## Release 4.0.0
+* Split ensure parameter to package_ensure and config_ensure
+* Add reference file
+
 ## Release 3.0.0
 * Fixed unit tests
 * Fixed puppet-lint issues
