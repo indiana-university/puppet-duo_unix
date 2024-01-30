@@ -60,7 +60,7 @@ are already installed on your puppet server. They are as follows:
 
 * `puppetlabs/apt` `6.0 - 9.0`
 * `puppetlabs/augeas_core` `1.0.0 - 2.0.0`
-* `puppetlabs/stdlib` `5.0.0 - 9.0.0`
+* `puppetlabs/stdlib` `5.0.0 - 10.0.0`
 * `puppetlabs/yumrepo_core` `1.0.0 - 2.0.0`
 
 ### Beginning with duo_unix
