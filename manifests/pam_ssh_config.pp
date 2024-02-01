@@ -3,14 +3,22 @@
 #
 # @summary This class sets sshd up to use PAM
 #
+# @param keyonly
+#   Configure pam to accept SSH keys only as primary factor
+#   The default is false.
+#
 # This class will set the following parameters in the sshd_config file
 #   * UsePAM                          yes
 #   * UseDNS                          no
 #   * ChallengeResponseAuthentication yes
+#   * ExposeAuthInfo                  yes
+#   * AuthenticationMethods based on keyonly
 #
 # @example
 #   include duo_unix::pam_ssh_config
-class duo_unix::pam_ssh_config inherits duo_unix::params {
+class duo_unix::pam_ssh_config (
+  Boolean       $keyonly = false
+) inherits duo_unix::params {
   augeas { 'Duo Security SSH Configuration':
     context => '/files/etc/ssh/sshd_config',
     changes => [
@@ -18,7 +26,10 @@ class duo_unix::pam_ssh_config inherits duo_unix::params {
       'set UseDNS no',
       'set ChallengeResponseAuthentication yes',
       'set ExposeAuthInfo yes',
-      'set AuthenticationMethods publickey,keyboard-interactive:pam keyboard-interactive:pam,keyboard-interactive:pam',
+      $keyonly ? {
+	true => 'set AuthenticationMethods "publickey,keyboard-interactive:pam"',
+	false => 'set AuthenticationMethods "publickey,keyboard-interactive:pam keyboard-interactive:pam,keyboard-interactive:pam"'
+      }
     ],
     require => [Package[$duo_unix::params::duo_package], Package[$duo_unix::params::pam_ssh_user_auth_package]],
     notify  => Service[$duo_unix::params::ssh_service],
