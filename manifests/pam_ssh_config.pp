@@ -17,8 +17,10 @@ class duo_unix::pam_ssh_config inherits duo_unix::params {
       'set UsePAM yes',
       'set UseDNS no',
       'set ChallengeResponseAuthentication yes',
+      'set ExposeAuthInfo yes',
+      'set AuthenticationMethods publickey,keyboard-interactive:pam keyboard-interactive:pam,keyboard-interactive:pam',
     ],
-    require => Package[$duo_unix::params::duo_package],
+    require => [Package[$duo_unix::params::duo_package], Package[$duo_unix::params::pam_ssh_user_auth_package]],
     notify  => Service[$duo_unix::params::ssh_service],
   }
 
@@ -27,4 +29,5 @@ class duo_unix::pam_ssh_config inherits duo_unix::params {
       ensure => 'running',
     }
   }
+  
 }
