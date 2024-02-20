@@ -1,5 +1,4 @@
 # Changelog
-
 ## Release 4.0.3
 * Accordingly updates sshd_config file if the accept_env_factor parameter is set to 'yes'
 
