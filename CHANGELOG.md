@@ -1,4 +1,10 @@
 # Changelog
+## Release 4.0.3
+* Accordingly updates sshd_config file if the accept_env_factor parameter is set to 'yes'
+
+## Release 4.0.2
+* Support Puppet 8, Drop Puppet 6, support stdlib 9.x
+
 ## Release 4.0.1
 * PDK update
 * Merge pull request for optional cafile parameter (treydock)
