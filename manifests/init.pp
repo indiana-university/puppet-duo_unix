@@ -129,9 +129,6 @@ class duo_unix (
   package { $duo_unix::duo_package:
     ensure => $package_ensure,
   }
-  package { $duo_unix::pam_ssh_user_auth_package:
-    ensure => $package_ensure,
-  }
 
   if ($duo_unix::usage == 'login') {
     $owner = 'sshd'
@@ -143,6 +140,11 @@ class duo_unix (
     if ($manage_pam) {
       if ($manage_pam and $usage == 'pam') {
         include duo_unix::pam_ssh_config
+        if ($facts['os']['family'] == 'RedHat') {
+          package { $duo_unix::pam_ssh_user_auth_package:
+            ensure => $package_ensure,
+          }
+        }
       }
 
       include duo_unix::pam_config
