@@ -42,45 +42,45 @@
 #   The default is "file"
 #
 # @param fallback_local_ip
-#   If Duo Unix cannot detect the IP address of the client, setting 
-#   fallback_local_ip = yes will cause Duo Unix to send the IP address 
+#   If Duo Unix cannot detect the IP address of the client, setting
+#   fallback_local_ip = yes will cause Duo Unix to send the IP address
 #   of the server it is running on.
 #   The default is "no"
 #
 # @param failmode
-#   On service or configuration errors that prevent Duo authentication, 
-#   fail "safe" (allow access) or "secure" (deny access). 
+#   On service or configuration errors that prevent Duo authentication,
+#   fail "safe" (allow access) or "secure" (deny access).
 #   The default is "safe".
 #
 # @param pushinfo
-#   Include information such as the command to be executed in the Duo 
-#   Push message. Either "yes" or "no". 
+#   Include information such as the command to be executed in the Duo
+#   Push message. Either "yes" or "no".
 #   The default is "no".
 #
 # @param autopush
-#   Either "yes" or "no". Default is "no". If "yes", Duo Unix will 
+#   Either "yes" or "no". Default is "no". If "yes", Duo Unix will
 #   automatically send a push login request to the user's phone, falling back
 #   on a phone call if push is unavailable. Note that this effectively disables
-#   passcode authentication. If "no", the user will be prompted to choose an 
+#   passcode authentication. If "no", the user will be prompted to choose an
 #   authentication method.
 #   When configured with autopush = yes, we recommend setting prompts = 1
 #   The default is "no"
 #
 # @param motd
 #   Print the contents of /etc/motd to screen after a successful login. Either
-#   "yes" or "no". 
+#   "yes" or "no".
 #   The default is "no"
 #
 # @param prompts
 #   If a user fails to authenticate with a second factor, Duo Unix will prompt
-#   the user to authenticate again. This option sets the maximum number of 
-#   prompts that Duo Unix will display before denying access. 
-#   Must be 1, 2, or 3. 
+#   the user to authenticate again. This option sets the maximum number of
+#   prompts that Duo Unix will display before denying access.
+#   Must be 1, 2, or 3.
 #   Default is 3.
 #
 # @param accept_env_factor
-#   Look for factor selection or passcode in the $DUO_PASSCODE environment 
-#   variable before prompting the user for input. When $DUO_PASSCODE is 
+#   Look for factor selection or passcode in the $DUO_PASSCODE environment
+#   variable before prompting the user for input. When $DUO_PASSCODE is
 #   non-empty, it will override autopush.
 #   Default is "no"
 # @param proxy
@@ -94,7 +94,7 @@
 #
 # @param show_diff
 #   Whether to display differences when the file changes.
-# 
+#
 #
 class duo_unix (
   Enum['login', 'pam']                $usage,
