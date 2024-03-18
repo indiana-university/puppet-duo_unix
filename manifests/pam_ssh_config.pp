@@ -54,5 +54,5 @@ class duo_unix::pam_ssh_config (
       ensure => 'running',
     }
   }
-  
+
 }

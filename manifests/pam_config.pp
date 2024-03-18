@@ -25,6 +25,7 @@ class duo_unix::pam_config inherits duo_unix::params {
         ],
         require => Package[$duo_unix::params::duo_package],
         onlyif  => "match ${aug_match} size == 0";
+	notify  => Service[$duo_unix::params::ssh_service],
       }
     }
     'RedHat': {
@@ -38,6 +39,7 @@ class duo_unix::pam_config inherits duo_unix::params {
         ],
         require => Package[$duo_unix::params::duo_package],
         onlyif  => "match ${aug_match} size == 0";
+	notify  => Service[$duo_unix::params::ssh_service],
       }
     }
     default: {
