@@ -34,6 +34,7 @@ class duo_unix::params {
     }
     'RedHat': {
       $duo_package = 'duo_unix'
+      $pam_ssh_user_auth_package = 'pam_ssh_user_auth'
       $ssh_service = 'sshd'
       $pam_file = $facts['os']['release']['major'] ? {
         '5' => '/etc/pam.d/system-auth',
