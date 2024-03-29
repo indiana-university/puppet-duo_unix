@@ -20,7 +20,7 @@ class duo_unix::ssh_config inherits duo_unix::params {
   }
 
   if $duo_unix::params::accept_env_factor == 'yes' {
-    augeas {'duo_ssh_env':
+    augeas { 'duo_ssh_env':
       context => '/files/etc/ssh/sshd_config',
       changes => [
         'set AcceptEnv DUO_PASSCODE',
