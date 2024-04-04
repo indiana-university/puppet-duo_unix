@@ -143,6 +143,7 @@ class duo_unix (
         if ($facts['os']['family'] == 'RedHat') {
           package { $duo_unix::pam_ssh_user_auth_package:
             ensure => $package_ensure,
+            require => Yumrepo['epel'],
           }
         }
       }
