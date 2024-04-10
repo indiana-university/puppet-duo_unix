@@ -10,34 +10,27 @@
 #   include duo_unix::ssh_config
 class duo_unix::ssh_config inherits duo_unix::params {
   augeas { 'duo_ssh':
-    context => '/files/etc/ssh/sshd_config',
+    lens    => 'Sshd.lns',
+    incl    => '/etc/ssh/sshd_config',
     changes => [
-      'set ForceCommand /usr/sbin/login_duo',
-      'set PermitTunnel no',
+      'set /files/etc/ssh/sshd_config/ForceCommand /usr/sbin/login_duo',
+      'set /files/etc/ssh/sshd_config/PermitTunnel no',
     ],
     require => Package[$duo_unix::params::duo_package],
     notify  => Service[$duo_unix::params::ssh_service],
   }
-  
-  if $duo_unix::params::accept_env_factor == 'yes' {
-    augeas {'duo_ssh_env':
-      context => '/files/etc/ssh/sshd_config',
-      changes => [
-        'set AcceptEnv DUO_PASSCODE',
-      ],
-      require => Package[$duo_unix::params::duo_package],
-      notify  => Service[$duo_unix::params::ssh_service],
-    }
-  }
-
+# If the env factor is set to yes, creates idempotency for AcceptEnv in augeas block with onlyif that
+# looks for pre-existing DUO_PASSCODE because even though it seems so, augeas wasn't designed for idempotency
   if $duo_unix::params::accept_env_factor == 'yes' {
     augeas { 'duo_ssh_env':
-      context => '/files/etc/ssh/sshd_config',
+      lens    => 'Sshd.lns',
+      incl    => '/etc/ssh/sshd_config',
       changes => [
-        'set AcceptEnv DUO_PASSCODE',
+        'set /files/etc/ssh/sshd_config/AcceptEnv[1000]/01 DUO_PASSCODE',
       ],
       require => Package[$duo_unix::params::duo_package],
       notify  => Service[$duo_unix::params::ssh_service],
+      onlyif  => "values /files/etc/ssh/sshd_config/AcceptEnv/* not_include 'DUO_PASSCODE'",
     }
   }
 
