@@ -52,6 +52,11 @@ If `usage` is set to `pam`, it will alter your pam config. Those changes are
 distribution-specific. To see exactly what is changed, please refer to the
 `manifests/pam_config.pp` file.
 
+If `accept_env_factor` is set to `yes`, it will configure your sshd_config
+ to allow DUO_PASSCODE as an AcceptEnv value to enable [out-of-band 2FA](https://help.duo.com/s/article/3313?language=en_US) 
+in the shell for use cases such as scp. **This feature is only possible if 
+`usage` is set to `login`.**
+
 ### Setup Requirements
 
 This module requires some additional modules, but it is highly likely that they
@@ -71,13 +76,16 @@ The very basic steps needed for a user to get the module up and running. This ca
 
 ```ruby
 class { 'duo_unix':
-  usage => 'login',
-  ikey  => 'your integration key',
-  skey  => 'your secret key',
-  host  => 'api-yourhost.duosecurity.com',
-  motd  => 'yes',
+  usage             => 'login',
+  ikey              => 'your integration key',
+  skey              => 'your secret key',
+  host              => 'api-yourhost.duosecurity.com',
+  motd              => 'yes',
+  accept_env_factor => 'no', 
 }
 ```
+**Note:** accept_env_factor is set to 'no' by default, but enables DUO_PASSCODE
+as desribed above for out-of-band 2FA when set to 'yes'
 
 ## Limitations
 
