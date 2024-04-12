@@ -21,7 +21,7 @@ class duo_unix::ssh_config inherits duo_unix::params {
   }
 # If the env factor is set to yes, creates idempotency for AcceptEnv in augeas block with onlyif that
 # looks for pre-existing DUO_PASSCODE because even though it seems so, augeas wasn't designed for idempotency
-  if $duo_unix::params::accept_env_factor == 'yes' {
+  if $duo_unix::accept_env_factor == 'yes' {
     augeas { 'duo_ssh_env':
       lens    => 'Sshd.lns',
       incl    => '/etc/ssh/sshd_config',
