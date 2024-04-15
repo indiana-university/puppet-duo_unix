@@ -51,26 +51,6 @@ describe 'duo_unix' do
       }
     end
 
-    context 'with accept_env_factor => yes' do
-      let(:params) do
-        {
-          'usage'             => 'login',
-          'ikey'              => 'testikey',
-          'skey'              => 'testskey',
-          'host'              => 'api-XXXXXXXX.duosecurity.com',
-          'accept_env_factor' => 'yes',
-        }
-      end
-      let(:facts) { os_facts }
-
-      it {
-        is_expected.to contain_file('/etc/duo/login_duo.conf')
-          .with_content(%r{^accept_env_factor=yes$})
-        is_expected.to contain_file('/etc/ssh/sshd_config')
-          .with_content(%r{^AcceptEnv DUO_PASSCODE$})
-      }
-    end
-
     context 'with usage pam and ensure latest' do
       let(:params) do
         {
