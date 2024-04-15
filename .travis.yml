@@ -4,6 +4,7 @@ dist: xenial
 language: ruby
 cache: bundler
 before_install:
+  - sudo apt-get install -qq augeas-tools augeas-lenses libaugeas-dev
   - bundle -v
   - rm -f Gemfile.lock
   - "# Update system gems if requested. This is useful to temporarily workaround troubles in the test runner"
