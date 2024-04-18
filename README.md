@@ -97,6 +97,7 @@ module *currently* makes no attempt to support them.
 Pull requests are welcome, but all code must meet the following requirements
 
 * Is fully tested
+  * Note: Unit testing uses the [rspec-puppet-augeas](https://github.com/domcleal/rspec-puppet-augeas) Ruby gem, which requires the following local packages (at least in Debian-based environments) to be installed: `ruby-augeas augeas-tools augeas-lenses libaugeas-dev`
 * All tests **must** pass
 * Follows the [Puppet language style guide](https://puppet.com/docs/puppet/latest/style_guide.html)
 * All commits **must** be signed
