@@ -28,11 +28,14 @@ class duo_unix::pam_ssh_config (
         'set ChallengeResponseAuthentication yes',
         'set ExposeAuthInfo yes',
         $keyonly ? {
-          true => 'set AuthenticationMethods "publickey,keyboard-interactive:pam"',
+          true  => 'set AuthenticationMethods "publickey,keyboard-interactive:pam"',
           false => 'set AuthenticationMethods "gssapi-with-mic,keyboard-interactive:pam publickey,keyboard-interactive:pam keyboard-interactive:pam,keyboard-interactive:pam"'
-        }
+        },
       ],
-      require => [Package[$duo_unix::params::duo_package], Package[$duo_unix::params::pam_ssh_user_auth_package]],
+      require => [
+        Package[$duo_unix::params::duo_package],
+        Package[$duo_unix::params::pam_ssh_user_auth_package]
+      ],
       notify  => Service[$duo_unix::params::ssh_service],
     }
   }
@@ -54,5 +57,4 @@ class duo_unix::pam_ssh_config (
       ensure => 'running',
     }
   }
-
 }
