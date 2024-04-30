@@ -5,10 +5,10 @@ describe 'duo_unix' do
     context "on #{os}" do
       let(:params) do
         {
-          'usage' => 'login',
-          'ikey'  => 'testikey',
-          'skey'  => 'testskey',
-          'host'  => 'api-XXXXXXXX.duosecurity.com',
+          'usage'             => 'login',
+          'ikey'              => 'testikey',
+          'skey'              => 'testskey',
+          'host'              => 'api-XXXXXXXX.duosecurity.com',
         }
       end
       let(:facts) { os_facts }

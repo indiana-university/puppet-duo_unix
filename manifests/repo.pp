@@ -29,6 +29,8 @@ class duo_unix::repo inherits duo_unix::params {
       $codename_mapping = {
         '18.04' => 'bionic',
         '20.04' => 'focal',
+        '22.04' => 'jammy',
+        '23.10' => 'noble',
         '7' => 'wheezy',
         '8' => 'jessie',
         '9' => 'stretch',

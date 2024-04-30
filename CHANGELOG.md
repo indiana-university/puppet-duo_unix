@@ -1,4 +1,12 @@
 # Changelog
+## Release 4.1.0
+* Adds pdk auto-added .config directory to gitignore
+* Format linting on manifests/ssh_config.pp
+* Adds 'with accept_env_factor => yes' context to spec/classes/duo_unix_spec.rb, to test when yes is specified for that class
+* Adds jammy and noble Ubuntu releases to Duo repo setup
+* Seemingly small but VERY significant changes to augeas blocks in manifests/ssh_config.pp to actually get this module to touch sshd_config at all, and to ensure idempotency when specifying an AcceptEnv option using Puppet's 'onlyif' f
+eature (augeas was NOT designed to do conveniently this) 
+
 ## Release 4.0.3
 * Accordingly updates sshd_config file if the accept_env_factor parameter is set to 'yes'
 

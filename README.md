@@ -52,6 +52,11 @@ If `usage` is set to `pam`, it will alter your pam config. Those changes are
 distribution-specific. To see exactly what is changed, please refer to the
 `manifests/pam_config.pp` file.
 
+If `accept_env_factor` is set to `yes`, it will configure your sshd_config
+ to allow DUO_PASSCODE as an AcceptEnv value to enable [out-of-band 2FA](https://help.duo.com/s/article/3313?language=en_US) 
+in the shell for use cases such as scp. **This feature is only possible if 
+`usage` is set to `login`.**
+
 ### Setup Requirements
 
 This module requires some additional modules, but it is highly likely that they
@@ -71,13 +76,16 @@ The very basic steps needed for a user to get the module up and running. This ca
 
 ```ruby
 class { 'duo_unix':
-  usage => 'login',
-  ikey  => 'your integration key',
-  skey  => 'your secret key',
-  host  => 'api-yourhost.duosecurity.com',
-  motd  => 'yes',
+  usage             => 'login',
+  ikey              => 'your integration key',
+  skey              => 'your secret key',
+  host              => 'api-yourhost.duosecurity.com',
+  motd              => 'yes',
+  accept_env_factor => 'no', 
 }
 ```
+**Note:** accept_env_factor is set to 'no' by default, but enables DUO_PASSCODE
+as desribed above for out-of-band 2FA when set to 'yes'
 
 ## Limitations
 
@@ -89,6 +97,7 @@ module *currently* makes no attempt to support them.
 Pull requests are welcome, but all code must meet the following requirements
 
 * Is fully tested
+  * Note: Unit testing uses the [rspec-puppet-augeas](https://github.com/domcleal/rspec-puppet-augeas) Ruby gem, which requires the following local packages (at least in Debian-based environments) to be installed: `ruby-augeas augeas-tools augeas-lenses libaugeas-dev`
 * All tests **must** pass
 * Follows the [Puppet language style guide](https://puppet.com/docs/puppet/latest/style_guide.html)
 * All commits **must** be signed
