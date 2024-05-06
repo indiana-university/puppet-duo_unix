@@ -24,7 +24,7 @@ class duo_unix::pam_config inherits duo_unix::params {
           "set ${aug_pam_path}/100/module ${duo_unix::params::pam_module}",
         ],
         require => Package[$duo_unix::params::duo_package],
-	notify  => Service[$duo_unix::params::ssh_service],
+        notify  => Service[$duo_unix::params::ssh_service],
         onlyif  => "match ${aug_match} size == 0";
       }
     }
@@ -38,7 +38,7 @@ class duo_unix::pam_config inherits duo_unix::params {
           "set ${aug_pam_path}/100/module ${duo_unix::params::pam_module}",
         ],
         require => Package[$duo_unix::params::duo_package],
-	notify  => Service[$duo_unix::params::ssh_service],
+        notify  => Service[$duo_unix::params::ssh_service],
         onlyif  => "match ${aug_match} size == 0";
       }
     }
