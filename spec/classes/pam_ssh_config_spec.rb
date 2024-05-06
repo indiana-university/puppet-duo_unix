@@ -8,7 +8,7 @@ describe 'duo_unix::pam_ssh_config' do
     package { 'duo-unix':
       ensure => 'installed'
     }
-    package { 'pam_ssh_user_auth': 
+    package { 'pam_ssh_user_auth':
       ensure => 'installed'
     }
     "
