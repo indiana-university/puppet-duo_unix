@@ -4,7 +4,6 @@ default:
   images:
     - 'litmusimage/ubuntu:20.04'
     - 'litmusimage/ubuntu:22.04'
-    - 'litmusimage/centos:stream8'
     - 'litmusimage/centos:stream9'
   vars: "docker_run_opts: ['--tmpfs=/run', '--tmpfs=/run/lock', '-v=/sys/fs/cgroup/puppet.slice:/sys/fs/cgroup/puppet.slice:rw', '--cgroupns=host', '--cgroup-parent=puppet.slice']"
 ubuntu:
@@ -23,8 +22,6 @@ debian:
 centos:
   provisioner: docker
   images:
-    - 'litmusimage/centos:7'
-    - 'litmusimage/centos:stream8'
     - 'litmusimage/centos:stream9'
   vars: "docker_run_opts: ['--tmpfs=/run', '--tmpfs=/run/lock', '-v=/sys/fs/cgroup/puppet.slice:/sys/fs/cgroup/puppet.slice:rw', '--cgroupns=host', '--cgroup-parent=puppet.slice']"
 redhatish:
