@@ -2,7 +2,7 @@ require 'spec_helper_acceptance'
 
 rsyslog_config_file = '/etc/rsyslog.d/60-duo_unix.conf'
 
-# manage_ssh is needed for testing because sshd is already used for 
+# manage_ssh is needed for testing because sshd is already used for
 # the testing environment and gives false failures without setting to false here
 pp_static_content = <<-PUPPETCODE
     class { 'duo_unix':
