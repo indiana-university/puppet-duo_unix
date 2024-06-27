@@ -45,8 +45,8 @@ group :system_tests do
   gem "serverspec", '~> 2.41',     require: false
 end
 group :development, :system_tests do
-  gem 'puppetlabs_spec_helper', :require => false
-  gem 'rspec-puppet-augeas', :require => false
+  gem "puppetlabs_spec_helper", '~> 7.0', require: false
+  gem "rspec-puppet-augeas", '~> 0.4',    require: false
 end
 
 puppet_version = ENV['PUPPET_GEM_VERSION']
