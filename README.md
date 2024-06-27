@@ -81,16 +81,18 @@ class { 'duo_unix':
   skey              => 'your secret key',
   host              => 'api-yourhost.duosecurity.com',
   motd              => 'yes',
-  accept_env_factor => 'no', 
+  accept_env_factor => 'no',
+  duo_rsyslog       => false, 
 }
 ```
-**Note:** accept_env_factor is set to 'no' by default, but enables DUO_PASSCODE
-as desribed above for out-of-band 2FA when set to 'yes'
+### Notes 
+* accept_env_factor is set to 'no' by default, but when set to 'yes', enables DUO_PASSCODE as desribed above for out-of-band 2FA
+* duo_rsyslog is set to false by default, but when set to true, enables sending duo auth messages to the OS-default auth log (this is also very helpful for simplifying fail2ban config if also used)
 
 ## Limitations
 
 In the past the official Duo module supported various RedHat derivatives. This
-module *currently* makes no attempt to support them.
+module *currently* only makes minor attempts to support them.
 
 ## Contributing
 
