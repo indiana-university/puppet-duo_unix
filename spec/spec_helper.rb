@@ -5,7 +5,6 @@ RSpec.configure do |c|
 end
 
 require 'puppetlabs_spec_helper/module_spec_helper'
-require 'rspec-puppet-augeas'
 require 'rspec-puppet-facts'
 
 require 'spec_helper_local' if File.file?(File.join(File.dirname(__FILE__), 'spec_helper_local.rb'))
@@ -46,7 +45,6 @@ RSpec.configure do |c|
     Puppet.settings[:strict] = :warning
     Puppet.settings[:strict_variables] = true
   end
-  c.augeas_fixtures = File.join(File.dirname(File.expand_path(__FILE__)), 'fixtures', 'augeas')
   c.filter_run_excluding(bolt: true) unless ENV['GEM_BOLT']
   c.after(:suite) do
     RSpec::Puppet::Coverage.report!(0)
