@@ -81,8 +81,16 @@
 # @param accept_env_factor
 #   Look for factor selection or passcode in the $DUO_PASSCODE environment
 #   variable before prompting the user for input. When $DUO_PASSCODE is
-#   non-empty, it will override autopush.
-#   Default is "no"
+#   non-empty, it will override autopush. For this parameter to work properly 
+#   when set to 'yes', the manage_ssh parameter must be set to true. 
+#   Default is "no".
+#
+# @param duo_rsyslog
+#   Sends Duo-related auth logs into auth.log in addition to Duo's default
+#   syslog logging destination. This is to facilitate the use of fail2ban
+#   with Duo conditions by confining all auth-related activity to auth.log.
+#   Default is false
+#
 # @param proxy
 #   Whether to use a proxy.
 #
@@ -113,6 +121,7 @@ class duo_unix (
   Enum['no', 'yes']                   $motd              = $duo_unix::params::motd,
   Integer[1, 3]                       $prompts           = $duo_unix::params::prompts,
   Enum['no', 'yes']                   $accept_env_factor = $duo_unix::params::accept_env_factor,
+  Boolean                             $duo_rsyslog       = $duo_unix::params::duo_rsyslog,
   Optional[StdLib::Httpurl]           $proxy             = undef,
   Optional[Stdlib::Absolutepath]      $cafile            = undef,
   Optional[String]                    $groups            = undef,
@@ -120,6 +129,9 @@ class duo_unix (
 ) inherits duo_unix::params {
   if $manage_repo {
     include duo_unix::repo
+  }
+  if $duo_rsyslog {
+    include duo_unix::rsyslog
   }
 
   #

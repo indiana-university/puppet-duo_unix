@@ -19,6 +19,7 @@ class duo_unix::params {
   $prompts            = 3
   $accept_env_factor  = 'no'
   $pam_unix_control   = 'requisite'
+  $duo_rsyslog        = false
 
   $pam_module = $facts['os']['architecture'] ? {
     'i386'   => '/lib/security/pam_duo.so',
@@ -27,10 +28,11 @@ class duo_unix::params {
   }
 
   case $facts['os']['family'] {
-    'Debian': {
-      $duo_package = 'duo-unix'
-      $ssh_service = 'sshd'
-      $pam_file    = '/etc/pam.d/common-auth'
+    'Debian', 'Ubuntu' : {
+      $duo_package  = 'duo-unix'
+      $ssh_service  = 'sshd'
+      $pam_file     = '/etc/pam.d/common-auth'
+      $auth_logfile = '/var/log/auth.log'
     }
     'RedHat': {
       $duo_package = 'duo_unix'
@@ -40,6 +42,7 @@ class duo_unix::params {
         '5' => '/etc/pam.d/system-auth',
         default => '/etc/pam.d/password-auth',
       }
+      $auth_logfile = '/var/log/secure'
     }
     default: {
       fail("Module ${module_name} does not support ${facts['os']['release']['full']}")

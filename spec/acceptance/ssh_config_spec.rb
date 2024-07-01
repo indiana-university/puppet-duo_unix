@@ -2,6 +2,8 @@ require 'spec_helper_acceptance'
 
 duo_config_file = '/etc/duo/login_duo.conf'
 
+# manage_ssh is needed for testing because sshd is already used for
+# the testing environment and gives false failures without setting to false here
 pp_static_content = <<-PUPPETCODE
     class { 'duo_unix':
         manage_ssh => false,
