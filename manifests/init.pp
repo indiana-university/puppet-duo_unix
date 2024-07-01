@@ -81,8 +81,9 @@
 # @param accept_env_factor
 #   Look for factor selection or passcode in the $DUO_PASSCODE environment
 #   variable before prompting the user for input. When $DUO_PASSCODE is
-#   non-empty, it will override autopush.
-#   Default is "no"
+#   non-empty, it will override autopush. For this parameter to work properly 
+#   when set to 'yes', the manage_ssh parameter must be set to true. 
+#   Default is "no".
 #
 # @param duo_rsyslog
 #   Sends Duo-related auth logs into auth.log in addition to Duo's default
