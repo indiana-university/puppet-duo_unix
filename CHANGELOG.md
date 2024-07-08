@@ -1,4 +1,7 @@
 # Changelog
+## Release 4.2.0
+* Adds duo_rsyslog option to the module - when activated, it sends Duo's syslog messages into the OS default auth log (also helpful for fail2ban use cases)
+
 ## Release 4.1.0
 * Adds pdk auto-added .config directory to gitignore
 * Format linting on manifests/ssh_config.pp
