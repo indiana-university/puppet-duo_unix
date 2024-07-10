@@ -1,4 +1,7 @@
 # Changelog
+## Release 4.2.1
+* Resolves dependency issues
+
 ## Release 4.2.0
 * Adds duo_rsyslog option to the module - when activated, it sends Duo's syslog messages into the OS default auth log (also helpful for fail2ban use cases)
 
