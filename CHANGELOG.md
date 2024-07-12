@@ -1,4 +1,7 @@
 # Changelog
+## Release 4.2.2
+* Major change that should have coincided with 4.2.0: changing the use of augeas in favor of stdlib's file_line resource.
+
 ## Release 4.2.1
 * Resolves dependency issues
 
