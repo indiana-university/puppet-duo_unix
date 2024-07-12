@@ -1,8 +1,8 @@
 require 'spec_helper'
 
 describe 'duo_unix::pam_config' do
-  let(:pre_condition) { "
-    package { 'duo_unix':
+  let :pre_condition do
+    "package { 'duo_unix':
       ensure => 'installed'
     }
     package { 'duo-unix':
@@ -11,7 +11,7 @@ describe 'duo_unix::pam_config' do
     service { 'sshd':
       ensure => 'running'
     }"
-  }
+  end
 
   on_supported_os.each do |os, os_facts|
     context "on #{os}" do
