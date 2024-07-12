@@ -63,10 +63,11 @@ describe 'duo_unix' do
       end
       let(:facts) { os_facts }
 
-      let(:pre_condition) { "
-        yumrepo { 'epel':
+      let :pre_condition do
+        "yumrepo { 'epel':
+          ensure => present
         }"
-      }
+      end
 
       it {
         is_expected.to contain_file('/etc/duo/pam_duo.conf')
