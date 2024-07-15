@@ -1,4 +1,7 @@
 # Changelog
+## Release 4.2.4
+* Fixes idempotency in ssh_config and adds sshd_config_path as a params default.
+
 ## Release 4.2.3
 * Writes sshd config to file in sshd_config.d instead of sshd_config file
 
