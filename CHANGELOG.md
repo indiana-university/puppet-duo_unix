@@ -1,4 +1,7 @@
 # Changelog
+## Release 4.2.3
+* Writes sshd config to file in sshd_config.d instead of sshd_config file
+
 ## Release 4.2.2
 * Major change that should have coincided with 4.2.0: changing the use of augeas in favor of stdlib's file_line resource.
 

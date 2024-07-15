@@ -3,16 +3,9 @@
 # @example
 #   include duo_unix::ssh_config
 class duo_unix::ssh_config inherits duo_unix::params {
-  $sshd_config_path = '/etc/ssh/sshd_config'
-  file_line { 'forcecommand_login_duo':
-    path    => $sshd_config_path,
-    line    => 'ForceCommand /usr/sbin/login_duo',
-    notify  => Service[$duo_unix::params::ssh_service],
-    require => Package[$duo_unix::params::duo_package],
-  }
-  file_line { 'permittunnel_no':
-    path    => $sshd_config_path,
-    line    => 'PermitTunnel no',
+  $sshd_config_path = '/etc/ssh/sshd_config.d/99-duo_sshd.conf'
+  file { $sshd_config_path:
+    content => "ForceCommand /usr/sbin/login_duo\nPermitTunnel no",
     notify  => Service[$duo_unix::params::ssh_service],
     require => Package[$duo_unix::params::duo_package],
   }
