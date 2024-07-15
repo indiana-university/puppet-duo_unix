@@ -20,6 +20,7 @@ class duo_unix::params {
   $accept_env_factor  = 'no'
   $pam_unix_control   = 'requisite'
   $duo_rsyslog        = false
+  $sshd_config_path   = '/etc/ssh/sshd_config.d/99-duo_sshd.conf'
 
   $pam_module = $facts['os']['architecture'] ? {
     'i386'   => '/lib/security/pam_duo.so',

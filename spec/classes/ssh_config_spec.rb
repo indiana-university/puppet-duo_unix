@@ -33,6 +33,8 @@ describe 'duo_unix::ssh_config' do
       it {
         is_expected.to contain_file('/etc/duo/login_duo.conf')
           .with_content(%r{^accept_env_factor=yes$})
+        is_expected.to contain_file('/etc/ssh/sshd_config.d/99-duo_sshd.conf')
+          .with_content(%r{^AcceptEnv DUO_PASSCODE$})
       }
     end
   end
