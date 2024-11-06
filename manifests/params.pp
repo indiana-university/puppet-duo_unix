@@ -33,7 +33,7 @@ class duo_unix::params {
       $duo_package  = 'duo-unix'
       $pam_file     = '/etc/pam.d/common-auth'
       $auth_logfile = '/var/log/auth.log'
-      case $facts['os']['codename'] {
+      case $facts['os']['distro']['codename'] {
         'noble' : {
           $ssh_service  = 'ssh'
         }
