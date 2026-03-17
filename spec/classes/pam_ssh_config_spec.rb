@@ -19,7 +19,7 @@ describe 'duo_unix::pam_ssh_config' do
 
       it { is_expected.to compile }
 
-      case os_facts[:osfamily]
+      case os_facts.dig(:os, 'family')
       when 'RedHat'
         keyonly = true
         context 'keyonly', if: keyonly do
